@@ -1,6 +1,6 @@
 import { GameEnvironment } from "../../game-environment";
 import { GameContext } from "../../game-context";
-import { Debugger } from "../../../debugger";
+import { Debugger } from "../../debugger";
 export class GuessTheLetterGameEnvironment extends GameEnvironment {
 
     private guesses: number = 0;
@@ -17,7 +17,7 @@ export class GuessTheLetterGameEnvironment extends GameEnvironment {
 
         super();
 
-        this.context.getInputObserver().windowClicked.subscribe(
+        this.context.getInputObserver().mouseClicked.subscribe(
             GuessTheLetterGameEnvironment.reactToClicks,
             err => Debugger.log( err )
         );
@@ -34,6 +34,10 @@ export class GuessTheLetterGameEnvironment extends GameEnvironment {
     private static reactToClicks( e ) {
 
         Debugger.log( "HEY!" );
+    }
+
+    public init() {
+
     }
 }
 

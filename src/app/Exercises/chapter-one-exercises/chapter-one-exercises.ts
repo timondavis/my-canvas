@@ -1,4 +1,4 @@
-import { Debugger } from "../../debugger";
+import { Debugger } from "../../game-engine/debugger";
 import { GuessTheLetter } from "../../game-engine/guesstheletter/guess-the-letter";
 import { GameContext } from "../../game-engine/game-context";
 
