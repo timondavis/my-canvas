@@ -7,8 +7,8 @@ export class GameContext {
 
     public constructor( private inputObserver : GameInputObserver,
                         private renderingContext : CanvasRenderingContext2D,
-                        private gameEnvironment : GameEnvironment = new GameEnvironment(),
-                        private gameRenderer : GameRenderer = new GameRenderer()
+                        private gameEnvironment : GameEnvironment =  null,
+                        private gameRenderer : GameRenderer = null
     ) { }
 
     public getInputObserver() {

@@ -1,2 +1,2 @@
-export class GameRenderer {
+export abstract class GameRenderer {
 }

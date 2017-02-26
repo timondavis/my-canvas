@@ -32,8 +32,6 @@ export class GuessTheLetterGameEnvironment extends GameEnvironment {
     }
 
     private static reactToClicks( e ) {
-
-        Debugger.log( "HEY!" );
     }
 }
 
