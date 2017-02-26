@@ -1,4 +1,4 @@
-import { GameContext } from "../../game-context";
+import { GameContext } from "../../../game-engine/game-context";
 import { GuessTheLetterRenderer } from "./renderer/guess-the-letter-renderer";
 import { GuessTheLetterGameEnvironment } from "./game-environment/guess-the-letter-game-environment";
 

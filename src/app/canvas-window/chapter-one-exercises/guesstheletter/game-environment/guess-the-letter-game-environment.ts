@@ -1,6 +1,6 @@
 import { Debugger } from "../../../../debugger";
-import { GameEnvironment } from "../../../game-environment";
-import { GameContext } from "../../../game-context";
+import { GameEnvironment } from "../../../../game-engine/game-environment";
+import { GameContext } from "../../../../game-engine/game-context";
 
 export class GuessTheLetterGameEnvironment extends GameEnvironment {
 

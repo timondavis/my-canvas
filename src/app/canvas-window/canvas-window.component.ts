@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Output, EventEmitter, HostListener } from '@angular/core';
 import { ChapterOneExercises } from "./chapter-one-exercises/chapter-one-exercises";
-import { GameContext } from "./game-context";
-import { GameInputObserver } from "./game-input-observer";
+import { GameContext } from "../game-engine/game-context";
+import { GameInputObserver } from "../game-engine/game-input-observer";
 
 @Component({
   selector: 'app-canvas-window',
