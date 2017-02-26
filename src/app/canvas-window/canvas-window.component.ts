@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Output, EventEmitter, HostListener } from '@angular/core';
-import { InputControllerService } from "./input-controller.service";
 import { ChapterOneExercises } from "./chapter-one-exercises/chapter-one-exercises";
 import { GameContext } from "./game-context";
+import { GameInputObserver } from "./game-input-observer";
 
 @Component({
   selector: 'app-canvas-window',
@@ -12,23 +12,27 @@ export class CanvasWindowComponent implements OnInit, AfterViewInit  {
 
   @ViewChild( 'gameCanvas' ) canvasRef : ElementRef;
 
-  public context2d : CanvasRenderingContext2D;
+  private inputObserver : GameInputObserver;
 
-  public constructor( public masterInputListener : InputControllerService ) { }
+  public constructor( ) {
+
+    this.inputObserver = new GameInputObserver();
+  }
 
   public onclick( e ) {
 
     this.transmitClick( e );
   }
 
-  private transmitClick( e ) { this.masterInputListener.registerWindowClick( e ) }
+  private transmitClick( e ) { this.inputObserver.registerWindowClicked( e ); }
 
   ngOnInit() { }
 
   ngAfterViewInit() {
 
-      this.context2d = this.canvasRef.nativeElement.getContext( '2d' );
+      let context2d = this.canvasRef.nativeElement.getContext( '2d' );
+      this.inputObserver = new GameInputObserver();
 
-      ChapterOneExercises.load_GuessTheLetter( new GameContext( this.masterInputListener, this.context2d ) );
+      ChapterOneExercises.load_GuessTheLetter( new GameContext( this.inputObserver, context2d ) );
   }
 }

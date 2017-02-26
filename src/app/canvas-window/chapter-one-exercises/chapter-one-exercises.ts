@@ -1,12 +1,10 @@
 import { Debugger } from "../../debugger";
 import { GuessTheLetter } from "./guesstheletter/guess-the-letter";
-import { InputControllerService } from '../input-controller.service';
-import { CanvasWindowComponent } from "../canvas-window.component";
 import { GameContext } from "../game-context";
 
 export class ChapterOneExercises {
 
-    public static ex1( context2d : CanvasRenderingContext2D, inputController : InputControllerService ) {
+    public static ex1( context2d : CanvasRenderingContext2D ) {
 
         // Draw Square
         Debugger.log( 'Draw Square' );

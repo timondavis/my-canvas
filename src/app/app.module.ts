@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CanvasWindowComponent } from './canvas-window/canvas-window.component';
-import { InputControllerService } from './canvas-window/input-controller.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,7 @@ import { InputControllerService } from './canvas-window/input-controller.service
     FormsModule,
     HttpModule
   ],
-  providers: [InputControllerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

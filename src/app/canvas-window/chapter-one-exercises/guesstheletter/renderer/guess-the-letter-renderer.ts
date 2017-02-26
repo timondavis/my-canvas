@@ -1,7 +1,9 @@
-import { GuessTheLetterGameEnvironmentService } from "../game-environment/guess-the-letter-game-environment.service";
+import { GuessTheLetterGameEnvironment } from "../game-environment/guess-the-letter-game-environment";
+import { GameContext } from "../../../game-context";
+
 export class GuessTheLetterRenderer {
 
-    public constructor( private context : CanvasRenderingContext2D, gameEnvironment : GuessTheLetterGameEnvironmentService ) {
+    public constructor( private context : GameContext ) {
 
     }
 }
