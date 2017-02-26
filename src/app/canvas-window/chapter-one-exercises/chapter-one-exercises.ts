@@ -1,5 +1,5 @@
 import { Debugger } from "../../debugger";
-import { GuessTheLetter } from "./guesstheletter/guess-the-letter";
+import { GuessTheLetter } from "../../game-engine/guesstheletter/guess-the-letter";
 import { GameContext } from "../../game-engine/game-context";
 
 export class ChapterOneExercises {

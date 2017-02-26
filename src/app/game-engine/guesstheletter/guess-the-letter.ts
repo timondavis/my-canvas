@@ -1,26 +1,23 @@
-import { GameContext } from "../../../game-engine/game-context";
-import { GuessTheLetterRenderer } from "./renderer/guess-the-letter-renderer";
 import { GuessTheLetterGameEnvironment } from "./game-environment/guess-the-letter-game-environment";
+import { GameContext } from "../game-context";
+import { Game } from "../game";
 
-export class GuessTheLetter {
+export class GuessTheLetter extends Game {
 
-    public constructor( private context : GameContext ) {
+    public constructor( context: GameContext ) {
+
+        super( context );
 
         this.context.setGameEnvironment( new GuessTheLetterGameEnvironment( context ) );
         this.context.setGameRenderer( new GuessTheLetterGameEnvironment( context ) );
 
         this.loadGame();
+
     }
 
     public loadGame() {
 
         let environment = ( <GuessTheLetterGameEnvironment> this.context.getGameEnvironment() );
-
         environment.resetLetterToGuess();
-    }
-
-    public getContext() : GameContext {
-
-        return this.context;
     }
 }

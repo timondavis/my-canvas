@@ -38,4 +38,5 @@ export class GameContext {
 
         this.gameRenderer = gameRenderer;
     }
+
 }

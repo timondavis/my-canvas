@@ -1,7 +1,6 @@
-import { Debugger } from "../../../../debugger";
-import { GameEnvironment } from "../../../../game-engine/game-environment";
-import { GameContext } from "../../../../game-engine/game-context";
-
+import { GameEnvironment } from "../../game-environment";
+import { GameContext } from "../../game-context";
+import { Debugger } from "../../../debugger";
 export class GuessTheLetterGameEnvironment extends GameEnvironment {
 
     private guesses: number = 0;
