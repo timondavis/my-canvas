@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, ElementRef, Input } from '@angular/core';
 import { GameInputObserver } from "../game-input-observer";
 import { GameContext } from "../game-context";
 import { ChapterOneExercises } from "../../Exercises/chapter-one-exercises/chapter-one-exercises";
@@ -17,6 +17,8 @@ export class GameCanvasComponent implements OnInit {
   @HostListener( 'mouseleave', ['$event'] ) onMouseLeave( e ) { this.inputObserver.registerMouseLeave( e ); }
   @HostListener( 'window:keydown', ['$event'] ) onKeyDown( e ) { this.inputObserver.registerKeyPress( e ); }
 
+  @Input( 'gameContext' ) contextInput : GameContext;
+
   private inputObserver : GameInputObserver;
 
   public constructor( ) {
@@ -31,6 +33,10 @@ export class GameCanvasComponent implements OnInit {
     let context2d = this.canvasRef.nativeElement.getContext( '2d' );
     this.inputObserver = new GameInputObserver();
 
-    ChapterOneExercises.load_GuessTheLetter( new GameContext( this.inputObserver, context2d ) );
+    if ( (this.contextInput ) &&
+        (this.contextInput.getRenderingContext == null ) ) {
+
+      this.contextInput.setGameRenderer( context2d );
+    }
   }
 }

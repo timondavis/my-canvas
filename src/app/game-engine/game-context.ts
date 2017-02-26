@@ -1,15 +1,22 @@
 import { GameInputObserver } from './game-input-observer';
 import { GameEnvironment } from "./game-environment";
 import { GameRenderer } from "./game-renderer";
+import { Game } from "./game";
 
 export class GameContext {
 
+    private game : Game;
+
 
     public constructor( private inputObserver : GameInputObserver,
-                        private renderingContext : CanvasRenderingContext2D,
-                        private gameEnvironment : GameEnvironment = new GameEnvironment(),
-                        private gameRenderer : GameRenderer = new GameRenderer()
-    ) { }
+                        private renderingContext : CanvasRenderingContext2D = null,
+                        private gameEnvironment : GameEnvironment = null,
+                        private gameRenderer : GameRenderer = null
+    ) {
+
+        this.game = null;
+    }
+
 
     public getInputObserver() {
         return this.inputObserver;
@@ -29,6 +36,11 @@ export class GameContext {
         return this.gameRenderer;
     }
 
+    public getGame() {
+
+        return this.game;
+    }
+
     public setGameEnvironment( gameEnvironment : GameEnvironment ) {
 
         this.gameEnvironment = gameEnvironment;
@@ -39,4 +51,8 @@ export class GameContext {
         this.gameRenderer = gameRenderer;
     }
 
+    public setGame( game : Game ) {
+
+        this.game = game;
+    }
 }

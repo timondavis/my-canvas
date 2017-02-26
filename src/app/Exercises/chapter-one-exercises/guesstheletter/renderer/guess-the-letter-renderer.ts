@@ -1,4 +1,4 @@
-import { GameContext } from "../../game-context";
+import { GameContext } from "../../../../game-engine/game-context";
 
 export class GuessTheLetterRenderer {
 

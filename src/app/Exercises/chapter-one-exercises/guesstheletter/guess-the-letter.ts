@@ -1,6 +1,6 @@
 import { GuessTheLetterGameEnvironment } from "./game-environment/guess-the-letter-game-environment";
-import { GameContext } from "../game-context";
-import { Game } from "../game";
+import { GameContext } from "../../../game-engine/game-context";
+import { Game } from "../../../game-engine/game";
 
 export class GuessTheLetter extends Game {
 
