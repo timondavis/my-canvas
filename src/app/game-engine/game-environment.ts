@@ -1,4 +1,4 @@
 export abstract class GameEnvironment {
 
-    public init() {};
+    public abstract init();
 }
