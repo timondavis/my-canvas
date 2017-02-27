@@ -1,6 +1,7 @@
 import { GameContext } from "../../../../game-engine/game-context";
 import { GameRenderer } from "../../../../game-engine/game-renderer";
 import { Debugger } from "../../../../game-engine/debugger";
+import { GuessTheLetterGameEnvironment } from "../game-environment/guess-the-letter-game-environment";
 
 export class GuessTheLetterRenderer extends GameRenderer {
 
@@ -13,31 +14,49 @@ export class GuessTheLetterRenderer extends GameRenderer {
 
         if ( this.context.getRenderingContext() == null ) { throw( "Need a CanvasRenderingContext2d object to draw")}
 
-        let self = this;
+        let context = this.context.getRenderingContext();
+        let environment = ( <GuessTheLetterGameEnvironment> this.context.getGameEnvironment() );
 
-        // Draw Square
-        Debugger.log( 'Draw Square' );
-        this.context.getRenderingContext().fillStyle = '#ffffaa';
-        this.context.getRenderingContext().fillRect(0, 0, 500, 300);
+        // Background
+        context.fillStyle = "#ffffaa";
+        context.fillRect( 0, 0, 500, 300 );
 
-        // Draw Message
-        Debugger.log( 'Draw Message' );
-        this.context.getRenderingContext().fillStyle = '#000000';
-        this.context.getRenderingContext().font = "20px Sans-Serif";
-        this.context.getRenderingContext().textBaseline = "top";
-        this.context.getRenderingContext().fillText( "Hello World!", 98, 80);
+        // Box
+        context.fillStyle = "#000000";
+        context.strokeRect( 5, 5, 490, 290 );
 
-        // Draw Image
-        Debugger.log( 'Draw Image' );
-        let helloWorldImage = new Image();
-        helloWorldImage.onload = function() {
-            self.context.getRenderingContext().drawImage( helloWorldImage, 160, 111 );
-        };
-        helloWorldImage.src = "/assets/helloworld.gif";
+        context.textBaseline = "top";
 
-        // Draw Inner Rectangle
-        Debugger.log( 'Draw Final Rectangle' );
-        this.context.getRenderingContext().strokeStyle = "#000000";
-        this.context.getRenderingContext().strokeRect(5,  5, 490, 290);        // Draw Square
+        // Date
+        context.fillStyle = "#000000";
+        context.font = "10px Sans-Serif";
+        context.fillText( environment.today.toDateString() , 150, 10 );
+
+        // Message
+        context.fillStyle = "#ff0000";
+        context.font = "14px Sans-Serif";
+        context.fillText( environment.message, 125 , 30 );
+
+        // Stats
+        context.fillStyle = "#109910";
+        context.font = "16px Sans-Serif";
+        context.fillText( "Guesses: " + environment.guesses, 215, 50 );
+
+        // Higher Or Lower
+        context.fillStyle = "#000000" ;
+        context.font = "16px Sans-Serif";
+        context.fillText( "Higher or Lower: " + environment.higherOrLower, 150, 125 );
+
+        // Letters Guessed
+        context.fillStyle = "#ff0000";
+        context.font = "16px Sans-Serif";
+
+        if ( environment.gameOver ) {
+
+            context.fillStyle = "#ff0000bcdefghijklmno";
+            context.font = "40px Sans-Serif";
+            context.fillText( "You got it!", 150, 180 );
+        }
+
     }
 }

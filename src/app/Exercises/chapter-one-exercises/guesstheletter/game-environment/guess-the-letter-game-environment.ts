@@ -4,15 +4,15 @@ import { GameEnvironment } from "../../../../game-engine/game-environment";
 
 export class GuessTheLetterGameEnvironment extends GameEnvironment {
 
-    private guesses: number = 0;
-    private message: string = "Guess the letter from a (lower) to z (higher)";
-    private letters = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
+    public guesses: number = 0;
+    public message: string = "Guess the letter from a (lower) to z (higher)";
+    public letters = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
         "s", "t", "u", "v", "w", "x", "y", "z" ];
-    private today = new Date();
-    private letterToGuess: string = "";
-    private higherOrLower: string = "";
-    private lettersGuessed = [];
-    private gameOver: boolean = false;
+    public today = new Date();
+    public letterToGuess: string = "";
+    public higherOrLower: string = "";
+    public lettersGuessed = [];
+    public gameOver: boolean = false;
 
     public constructor( private context : GameContext ) {
 
@@ -32,10 +32,35 @@ export class GuessTheLetterGameEnvironment extends GameEnvironment {
         this.gameOver = false;
     }
 
-    public tryLetter( letter : string ) {
+    public tryLetter( letterPressed : string ) {
 
-        this.today = new Date();
-        Debugger.log( letter );
+        let letter = letterPressed.toLowerCase();
+
+        this.guesses++;
+        this.lettersGuessed.push( letter );
+
+        if  ( letter == this.letterToGuess ) {
+
+            this.gameOver = true;
+        } else {
+
+            let letterIndex = this.letters.indexOf( this.letterToGuess );
+            let guessIndex = this.letters.indexOf( letter );
+
+            if ( guessIndex < 0 ) {
+
+                this.higherOrLower = "That is not a letter";
+            } else if ( guessIndex > letterIndex ) {
+
+                this.higherOrLower = "Lower";
+
+            } else {
+
+                this.higherOrLower = "Higher";
+            }
+        }
+
+        this.context.getGameRenderer().draw();
     }
 
     private resetLetterToGuess() {
