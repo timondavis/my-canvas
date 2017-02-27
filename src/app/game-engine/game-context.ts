@@ -46,6 +46,11 @@ export class GameContext {
         this.gameEnvironment = gameEnvironment;
     }
 
+    public setRenderingContext( renderingContext : CanvasRenderingContext2D ) {
+
+        this.renderingContext = renderingContext;
+    }
+
     public setGameRenderer( gameRenderer : GameRenderer ) {
 
         this.gameRenderer = gameRenderer;

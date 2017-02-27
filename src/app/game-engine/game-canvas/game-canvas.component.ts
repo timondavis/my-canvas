@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, ElementRef, Input, AfterViewInit } from '@angular/core';
-import { GameInputObserver } from "../game-input-observer";
 import { GameContext } from "../game-context";
-import { ChapterOneExercises } from "../../Exercises/chapter-one-exercises/chapter-one-exercises";
 
 @Component({
   selector: 'app-game-canvas',
@@ -29,9 +27,12 @@ export class GameCanvasComponent implements OnInit, AfterViewInit {
 
     let context2d = this.canvasRef.nativeElement.getContext( '2d' );
 
-    if ( this.contextInput.getRenderingContext == null  ) {
-      this.contextInput.setGameRenderer( context2d );
+    if ( this.contextInput.getRenderingContext() == null  ) {
+      this.contextInput.setRenderingContext( context2d );
     }
+
+    this.contextInput.getGame().loadGame();
+    this.contextInput.getGame().run();
   }
 
 }

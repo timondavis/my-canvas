@@ -6,7 +6,7 @@ export class Debugger {
      *
      * @param message
      */
-    public static log( message : string ) {
+    public static log( message : any ) {
 
         if (gameEngineConfiguration.showDebugger) {
 
