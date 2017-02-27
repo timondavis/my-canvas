@@ -25,17 +25,13 @@ export class GameCanvasComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    if ( ! this.contextInput ) {
-
-      throw ( "gameContext directive Required for GameCanvasComponent" );
-    }
+    if ( ! this.contextInput ) { throw ( "gameContext directive Required for GameCanvasComponent" ); }
 
     let context2d = this.canvasRef.nativeElement.getContext( '2d' );
 
-    if ( (this.contextInput ) &&
-        (this.contextInput.getRenderingContext == null ) ) {
-
+    if ( this.contextInput.getRenderingContext == null  ) {
       this.contextInput.setGameRenderer( context2d );
     }
   }
+
 }
