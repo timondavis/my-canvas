@@ -18,13 +18,12 @@ export class GuessTheLetter extends Game {
     public loadGame() {
 
         let environment = ( <GuessTheLetterGameEnvironment> this.context.getGameEnvironment() );
-        environment.resetLetterToGuess();
+        environment.init();
 
         this.isGameLoaded = true;
     }
 
     public run() {
-
 
     }
 }

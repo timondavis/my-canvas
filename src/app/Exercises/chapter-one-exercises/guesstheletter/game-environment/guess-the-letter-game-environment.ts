@@ -17,26 +17,41 @@ export class GuessTheLetterGameEnvironment extends GameEnvironment {
     public constructor( private context : GameContext ) {
 
         super();
-
-        this.context.getInputObserver().mouseClicked.subscribe(
-            GuessTheLetterGameEnvironment.reactToClicks,
-            err => Debugger.log( err )
-        );
     }
 
-    /**
-     * Reset the letter to be guessed
-     */
-    public resetLetterToGuess() {
+    public init() {
+
+        this.resetGame();
+        this.assignInputReactions();
+    }
+
+    public resetGame() {
+
+        this.resetLetterToGuess();
+        this.resetGuesses();
+        this.gameOver = false;
+    }
+
+    public tryLetter( letter : string ) {
+
+        this.today = new Date();
+        Debugger.log( letter );
+    }
+
+    private resetLetterToGuess() {
 
         this.letterToGuess = this.letters[ Math.floor( Math.random() * this.letters.length ) ];
     }
 
-    private static reactToClicks( e ) {
-
-        Debugger.log( "HEY!" );
+    private resetGuesses() {
+        this.guesses = 0;
+        this.lettersGuessed = [];
     }
 
-    public init() { }
+    private assignInputReactions() {
+
+        let game = this;
+        this.context.getInputObserver().keyPressed.subscribe( function( e ) { game.tryLetter( e.key ) } );
+    }
 }
 

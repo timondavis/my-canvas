@@ -9,5 +9,5 @@ export const environment = {
 
 export const gameEngineConfiguration = {
   showDebugger: true,
-  showInputLogInDebugger: true
+  showInputLogInDebugger: false
 };
