@@ -12,7 +12,7 @@ export class ArcPathController extends GameController {
 
         this.firstKeys = new ArcControllerKeys();
         this.secondKeys = new ArcControllerKeys();
-        this.radiusKeys = new ArcControllerKeys();git
+        this.radiusKeys = new ArcControllerKeys();
 
         this.context.getInputObserver().keyPressed.subscribe( function( event ) {
 
