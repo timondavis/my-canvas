@@ -1,6 +1,6 @@
 import { GameEnvironment } from "../../game-environment";
 import { GameContext } from "../../game-context";
-import { Debugger } from "../../../debugger";
+import { Debugger } from "../../debugger";
 export class GuessTheLetterGameEnvironment extends GameEnvironment {
 
     private guesses: number = 0;
@@ -13,15 +13,20 @@ export class GuessTheLetterGameEnvironment extends GameEnvironment {
     private lettersGuessed = [];
     private gameOver: boolean = false;
 
-    public constructor( private context : GameContext ) {
+    public constructor(context : GameContext ) {
 
-        super();
+        super( context );
 
-        this.context.getInputObserver().windowClicked.subscribe(
+        this.context.getInputObserver().mouseClicked.subscribe(
             GuessTheLetterGameEnvironment.reactToClicks,
             err => Debugger.log( err )
         );
     }
+
+    public init() {}
+
+    public update() {}
+
 
     /**
      * Reset the letter to be guessed
