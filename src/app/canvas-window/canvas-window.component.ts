@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GameContext } from "../game-engine/game-context";
 import { GameInputObserver } from "../game-engine/game-input-observer";
-import { BasicPathsGame } from "../Exercises/chapter-two-exercises/basic-paths/basic-paths-game";
+import { ArcPathGame } from "../Exercises/chapter-two-exercises/arc-paths/arc-path-game";
 
 @Component({
   selector: 'app-canvas-window',
@@ -15,7 +15,7 @@ export class CanvasWindowComponent implements OnInit  {
   public static buildGameContext() : GameContext {
 
     let context = new GameContext( new GameInputObserver() );
-    let game = new BasicPathsGame( context );
+    let game = new ArcPathGame( context );
 
     context.setGame( game );
 
