@@ -37,8 +37,6 @@ export class GuessTheLetterGameEnvironment extends GameEnvironment {
         Debugger.log( "HEY!" );
     }
 
-    public init() {
-
-    }
+    public init() { }
 }
 

@@ -10,7 +10,7 @@ import { GuessTheLetter } from "../Exercises/chapter-one-exercises/guessthelette
 })
 export class CanvasWindowComponent implements OnInit  {
 
-  ngOnInit() { }
+  public gameContext : GameContext = CanvasWindowComponent.buildGameContext();
 
   public static buildGameContext() : GameContext {
 
@@ -21,4 +21,9 @@ export class CanvasWindowComponent implements OnInit  {
 
     return context;
   }
+
+  ngOnInit() {
+
+  }
+
 }
