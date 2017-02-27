@@ -14,16 +14,13 @@ export class GuessTheLetterGameEnvironment extends GameEnvironment {
     public lettersGuessed = [];
     public gameOver: boolean = false;
 
-    public constructor( private context : GameContext ) {
-
-        super();
-    }
-
     public init() {
 
         this.resetGame();
         this.assignInputReactions();
     }
+
+    public update() {}
 
     public resetGame() {
 

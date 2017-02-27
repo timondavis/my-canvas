@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GameContext } from "../game-engine/game-context";
 import { GameInputObserver } from "../game-engine/game-input-observer";
-import { GuessTheLetter } from "../Exercises/chapter-one-exercises/guesstheletter/guess-the-letter";
+import { HelloWorldGame } from "../Exercises/chapter-one-exercises/helloworld/hello-world-game";
 
 @Component({
   selector: 'app-canvas-window',
@@ -15,7 +15,7 @@ export class CanvasWindowComponent implements OnInit  {
   public static buildGameContext() : GameContext {
 
     let context = new GameContext( new GameInputObserver() );
-    let game = new GuessTheLetter( context );
+    let game = new HelloWorldGame( context );
 
     context.setGame( game );
 

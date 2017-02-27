@@ -5,11 +5,6 @@ import { GuessTheLetterGameEnvironment } from "../game-environment/guess-the-let
 
 export class GuessTheLetterRenderer extends GameRenderer {
 
-    public constructor( private context : GameContext ) {
-
-        super();
-    }
-
     public draw() {
 
         if ( this.context.getRenderingContext() == null ) { throw( "Need a CanvasRenderingContext2d object to draw")}
