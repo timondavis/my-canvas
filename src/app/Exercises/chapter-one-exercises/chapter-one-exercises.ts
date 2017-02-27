@@ -1,6 +1,4 @@
-import { Debugger } from "../../debugger";
-import { GuessTheLetter } from "../../game-engine/guesstheletter/guess-the-letter";
-import { GameContext } from "../../game-engine/game-context";
+import { Debugger } from "../../game-engine/debugger";
 
 export class ChapterOneExercises {
 
@@ -31,10 +29,5 @@ export class ChapterOneExercises {
         context2d.strokeStyle = "#000000";
         context2d.strokeRect(5,  5, 490, 290);
 
-    }
-
-    public static load_GuessTheLetter( context : GameContext ) {
-
-        let game = new GuessTheLetter( context );
     }
 }

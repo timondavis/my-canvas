@@ -1,4 +1,3 @@
 <div ngClass="[game-canvas-wrapper]">
-    <canvas width="800" height="600" #gameCanvas (click)="onclick(event)" >Your browser does not support HTML
-        Canvas</canvas>
+    <app-game-canvas [gameContext]="gameContext"></app-game-canvas>
 </div>

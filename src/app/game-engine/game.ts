@@ -1,12 +1,13 @@
 import { GameContext } from "./game-context";
-export class Game {
+export abstract class Game {
 
-    public constructor( protected context : GameContext ) {
-    }
+    public isGameLoaded : boolean = false;
 
-    public loadGame() {
+    public constructor( protected context : GameContext ) { }
 
-    }
+    public abstract loadGame();
+
+    public abstract run();
 
     public getContext() : GameContext {
 

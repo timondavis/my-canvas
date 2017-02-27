@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CanvasWindowComponent } from './canvas-window/canvas-window.component';
+import { GameCanvasComponent } from './game-engine/game-canvas/game-canvas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CanvasWindowComponent,
+    GameCanvasComponent,
   ],
   imports: [
     BrowserModule,

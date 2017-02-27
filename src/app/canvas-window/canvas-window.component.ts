@@ -1,38 +1,29 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Output, EventEmitter, HostListener } from '@angular/core';
-import { ChapterOneExercises } from "./chapter-one-exercises/chapter-one-exercises";
+import { Component, OnInit, Input } from '@angular/core';
 import { GameContext } from "../game-engine/game-context";
 import { GameInputObserver } from "../game-engine/game-input-observer";
+import { HelloWorldGame } from "../Exercises/chapter-one-exercises/helloworld/hello-world-game";
 
 @Component({
   selector: 'app-canvas-window',
   templateUrl: './canvas-window.component.html',
   styleUrls: ['./canvas-window.component.css']
 })
-export class CanvasWindowComponent implements OnInit, AfterViewInit  {
+export class CanvasWindowComponent implements OnInit  {
 
-  @ViewChild( 'gameCanvas' ) canvasRef : ElementRef;
+  public gameContext : GameContext = CanvasWindowComponent.buildGameContext();
 
-  private inputObserver : GameInputObserver;
+  public static buildGameContext() : GameContext {
 
-  public constructor( ) {
+    let context = new GameContext( new GameInputObserver() );
+    let game = new HelloWorldGame( context );
 
-    this.inputObserver = new GameInputObserver();
+    context.setGame( game );
+
+    return context;
   }
 
-  public onclick( e ) {
+  ngOnInit() {
 
-    this.transmitClick( e );
   }
 
-  private transmitClick( e ) { this.inputObserver.registerWindowClicked( e ); }
-
-  ngOnInit() { }
-
-  ngAfterViewInit() {
-
-      let context2d = this.canvasRef.nativeElement.getContext( '2d' );
-      this.inputObserver = new GameInputObserver();
-
-      ChapterOneExercises.load_GuessTheLetter( new GameContext( this.inputObserver, context2d ) );
-  }
 }
