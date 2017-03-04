@@ -1,5 +1,6 @@
 import { GameEnvironment } from "../../../game-engine/game-environment";
 import { Square } from "./game-object/square";
+import { DefaultGameController } from "../../../game-engine/library/default-game-controller";
 export class SimpleTransformationsEnvironment extends GameEnvironment {
 
     public s1 : Square;
@@ -38,9 +39,16 @@ export class SimpleTransformationsEnvironment extends GameEnvironment {
 
     update() {
 
+        let controller = <DefaultGameController> this.context.getGameController();
+
         this.s1.update();
         this.s2.update();
         this.s3.update();
         this.s4.update();
+
+        if ( controller.isLeftDepressed() ) { this.s4.rotationSpeed -= 0.05; }
+        if ( controller.isRightDepressed() ) { this.s4.rotationSpeed += 0.05; }
+        if ( controller.isUpDepressed() ) { this.s4.y -= 0.2; }
+        if ( controller.isDownDepressed() ) { this.s4.y += 0.2; }
     }
 }
