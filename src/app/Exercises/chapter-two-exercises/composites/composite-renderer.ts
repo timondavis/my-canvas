@@ -18,7 +18,6 @@ export class CompositeRenderer extends GameRenderer {
         //draw a red square next to the other one
         context.fillRect( 60, 1, 50, 50 );
 
-
         // now set it to destination atop
         context.globalCompositeOperation = "destination-over";
         //context.globalCompositeOperation = "destination-atop";

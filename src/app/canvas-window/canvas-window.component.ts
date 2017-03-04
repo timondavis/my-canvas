@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GameContext } from "../game-engine/game-context";
 import { GameInputObserver } from "../game-engine/game-input-observer";
-import { CompositeGame } from "../Exercises/chapter-two-exercises/composites/composite-game";
+import { SimpleTransformationsGame } from "../Exercises/chapter-two-exercises/simple-transformations/simple-transformations-game";
 
 @Component({
   selector: 'app-canvas-window',
@@ -15,7 +15,7 @@ export class CanvasWindowComponent implements OnInit  {
   public static buildGameContext() : GameContext {
 
     let context = new GameContext( new GameInputObserver() );
-    let game = new CompositeGame( context );
+    let game = new SimpleTransformationsGame( context );
 
     context.setGame( game );
 
