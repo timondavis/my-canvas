@@ -37,6 +37,17 @@ export class BezierPathsRenderer extends GameRenderer {
       // Control Points
       c.fillRect( env.p1.x - 3, env.p1.y -3, 6, 6);
       c.fillRect( env.p2.x - 3, env.p2.y -3, 6, 6);
+
+      // Control Paths (theory?)
+      c.lineWidth = 1;
+
+      c.beginPath();
+      c.moveTo( 250, 100);
+      c.lineTo( env.p1.x, env.p1.y );
+      c.lineTo( env.p2.x, env.p2.y );
+      c.lineTo( 250, 400 );
+      c.stroke();
+      c.closePath();
    }
 
 }
