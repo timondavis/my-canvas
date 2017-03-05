@@ -8,7 +8,6 @@ export class SimpleTransformationsRenderer extends GameRenderer {
         let environment = <SimpleTransformationsEnvironment> this.context.getGameEnvironment();
 
         context.restore();
-        this.clear( "darkgreen" );
         this.setGridColor( "lightgreen" );
         this.setGridSize( 50 );
         this.setGridFontSize( 12 );

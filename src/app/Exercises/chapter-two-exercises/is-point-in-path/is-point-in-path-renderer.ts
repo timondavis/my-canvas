@@ -29,8 +29,5 @@ export class IsPointInPathRenderer extends GameRenderer {
         console.log( 'isPoint1InPath1 = ' + isPoint1InPath1 );
         console.log( 'isPoint1InPath2 = ' + isPoint1InPath2 );
         context.closePath();
-
-
-
     }
 }
