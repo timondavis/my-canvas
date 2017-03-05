@@ -12,7 +12,7 @@ export class GameContext {
     private renderingContext : CanvasRenderingContext2D;
     private gameEnvironment : GameEnvironment;
     private gameRenderer : GameRenderer;
-    private canvasElementRef : ElementRef;
+    private canvasElement : Element;
 
     public constructor( private inputObserver : GameInputObserver ) {
 
@@ -43,7 +43,7 @@ export class GameContext {
 
     public getCanvasElement() {
 
-        return this.canvasElementRef.nativeElement;
+        return this.canvasElement;
     }
 
     public getGame() {
@@ -76,8 +76,8 @@ export class GameContext {
         this.game = game;
     }
 
-    public setCanvasElementRef( canvasElementRef : ElementRef ) {
+    public setCanvasElement( canvasElementRef : Element ) {
 
-        this.canvasElementRef = canvasElementRef;
+        this.canvasElement = canvasElementRef;
     }
 }
