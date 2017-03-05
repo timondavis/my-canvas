@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GameContext } from "../game-engine/game-context";
 import { GameInputObserver } from "../game-engine/game-input-observer";
-import { CanvasClearingGame } from "../Exercises/chapter-two-exercises/canvas-clearing/canvas-clearing-game";
+import { IsPointInPathGame } from "../Exercises/chapter-two-exercises/is-point-in-path/is-point-in-path-game";
 
 @Component({
   selector: 'app-canvas-window',
@@ -15,7 +15,7 @@ export class CanvasWindowComponent implements OnInit  {
   public static buildGameContext() : GameContext {
 
     let context = new GameContext( new GameInputObserver() );
-    let game = new CanvasClearingGame( context );
+    let game = new IsPointInPathGame( context );
 
     context.setGame( game );
 
@@ -25,5 +25,4 @@ export class CanvasWindowComponent implements OnInit  {
   ngOnInit() {
 
   }
-
 }

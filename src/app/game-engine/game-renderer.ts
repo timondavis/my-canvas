@@ -3,9 +3,10 @@ import { Debugger } from "./debugger";
 
 export abstract class GameRenderer {
 
-    private gridColor       : string = "black";
-    private gridSize        : number = 50;
-    private gridFontSize    : number = 10;
+    private gridColor           : string = "black";
+    private gridBackgroundColor : string = "white";
+    private gridSize            : number = 50;
+    private gridFontSize        : number = 10;
 
     public constructor( protected context : GameContext ) {}
 
@@ -21,16 +22,13 @@ export abstract class GameRenderer {
         this.gridColor = color;
     }
 
-    public clear( fillStyle : string = "ffffff" ) {
+    public clear()  {
 
         let context = this.context.getRenderingContext();
+        let canvasWidth  = parseFloat( this.context.getCanvasElement().getAttribute( 'width' ) );
+        let canvasHeight = parseFloat( this.context.getCanvasElement().getAttribute( 'height' ) );
 
-        let oldFillStyle = context.fillStyle;
-        context.fillStyle = fillStyle;
-
-        context.fillRect( 0, 0, 800, 600 );
-
-        context.fillStyle = oldFillStyle
+        context.clearRect( 0, 0, canvasWidth, canvasHeight );
     }
 
     public setGridFontSize( size : number ) {
@@ -38,15 +36,29 @@ export abstract class GameRenderer {
         this.gridFontSize = size;
     }
 
+    public setGridBackgroundColor( color : string ) {
+
+        this.gridBackgroundColor = color;
+    }
+
     protected drawGrid( ) {
 
         let xProgress = 0;
         let yProgress = 0;
 
+        let gridWidth  = parseFloat ( this.context.getCanvasElement().getAttribute( 'width' ) );
+        let gridHeight = parseFloat ( this.context.getCanvasElement().getAttribute( 'height' ) );
+
+        Debugger.log( gridWidth );
+        Debugger.log( gridHeight );
+
         let context = this.context.getRenderingContext();
 
-        let capturedContext = GameRenderer.cloneContext( context );
+        // Draw background
+        context.fillStyle = this.gridBackgroundColor;
+        context.fillRect( 0, 0, gridWidth, gridHeight );
 
+        // Prepare to draw grid
         context.lineWidth = 0.5;
         context.strokeStyle = this.gridColor;
         context.fillStyle = this.gridColor;
@@ -54,46 +66,37 @@ export abstract class GameRenderer {
 
         context.moveTo( 0, 0 );
 
-
-        for ( ; xProgress <= 800 ; xProgress += this.gridSize ) {
+        // Print width lines
+        for ( ; xProgress <= gridWidth; xProgress += this.gridSize ) {
 
             context.beginPath();
             context.moveTo( xProgress, 0 );
-            context.lineTo( xProgress, 600 );
+            context.lineTo( xProgress, gridHeight );
             context.stroke();
             context.closePath();
 
-            context.fillText( xProgress.toString(), xProgress + 2, 10 );
+            if ( xProgress != 0 ) {
+                context.fillText( xProgress.toString(), xProgress + 2, 10 );
+            }
         }
 
-        for ( ; yProgress <= 600 ; yProgress += this.gridSize ) {
+        // Print height lines
+        for ( ; yProgress <= gridHeight ; yProgress += this.gridSize ) {
 
             context.beginPath();
             context.moveTo( 0, yProgress );
-            context.lineTo( 800, yProgress );
+            context.lineTo( gridWidth, yProgress );
             context.stroke();
             context.closePath();
 
-            context.fillText( yProgress.toString(), 2, yProgress - 2 );
+            if ( yProgress != 0 ) {
+                context.fillText( yProgress.toString(), 2, yProgress - 2 );
+            }
         }
 
-        GameRenderer.restoreContextSettingsFromClone( context, capturedContext );
+
+        context.moveTo( 0, 0 );
     }
 
-    private static cloneContext( context : CanvasRenderingContext2D ) : CanvasRenderingContext2D {
 
-        return JSON.parse( JSON.stringify( context ) );
-    }
-
-    private static restoreContextSettingsFromClone( realContext : CanvasRenderingContext2D,
-                                             restoreFromContext : CanvasRenderingContext2D ) {
-
-        realContext.lineWidth = restoreFromContext.lineWidth;
-        realContext.strokeStyle = restoreFromContext.strokeStyle;
-        realContext.fillStyle = restoreFromContext.fillStyle;
-        realContext.font = restoreFromContext.font;
-        realContext.textBaseline = restoreFromContext.textBaseline;
-        realContext.textAlign = restoreFromContext.textAlign;
-
-    }
 }
