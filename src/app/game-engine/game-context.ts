@@ -3,17 +3,18 @@ import { GameEnvironment } from "./game-environment";
 import { GameRenderer } from "./game-renderer";
 import { Game } from "./game";
 import { GameController } from "./game-controller";
+import { ElementRef } from "@angular/core";
 
 export class GameContext {
 
     private game : Game;
     private gameController : GameController;
+    private renderingContext : CanvasRenderingContext2D;
+    private gameEnvironment : GameEnvironment;
+    private gameRenderer : GameRenderer;
+    private canvasElementRef : ElementRef;
 
-    public constructor( private inputObserver : GameInputObserver,
-                        private renderingContext : CanvasRenderingContext2D = null,
-                        private gameEnvironment : GameEnvironment = null,
-                        private gameRenderer : GameRenderer = null
-    ) {
+    public constructor( private inputObserver : GameInputObserver ) {
 
         this.game = null;
     }
@@ -38,6 +39,11 @@ export class GameContext {
 
     public getGameController() {
         return this.gameController;
+    }
+
+    public getCanvasElement() {
+
+        return this.canvasElementRef.nativeElement;
     }
 
     public getGame() {
@@ -68,5 +74,10 @@ export class GameContext {
     public setGame( game : Game ) {
 
         this.game = game;
+    }
+
+    public setCanvasElementRef( canvasElementRef : ElementRef ) {
+
+        this.canvasElementRef = canvasElementRef;
     }
 }
