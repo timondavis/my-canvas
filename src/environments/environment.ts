@@ -8,6 +8,6 @@ export const environment = {
 };
 
 export const gameEngineConfiguration = {
-  showDebugger: false,
-  showInputLogInDebugger: true
+  showDebugger: true,
+  showInputLogInDebugger: false
 };

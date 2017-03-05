@@ -27,6 +27,8 @@ export class GameCanvasComponent implements OnInit, AfterViewInit {
 
     let context2d = this.canvasRef.nativeElement.getContext( '2d' );
 
+    this.contextInput.setCanvasElement( this.canvasRef.nativeElement );
+
     if ( this.contextInput.getRenderingContext() == null  ) {
       this.contextInput.setRenderingContext( context2d );
     }
