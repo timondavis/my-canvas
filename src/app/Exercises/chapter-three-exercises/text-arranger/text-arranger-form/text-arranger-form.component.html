@@ -1,8 +1,24 @@
 <form>
-    <label for="fill-or-stroke">RenderType</label>
-    <select (change)="updateRenderType($event)" id="fill-or-stroke">
+    <label for="renderType">Render Type</label>
+    <select (change)="updateForm($event)" id="renderType">
         <option value="fill">Fill</option>
         <option value="stroke">Stroke</option>
         <option value="both">Both</option>
     </select>
+
+    <label for="fontStyle">Font Style</label>
+    <select (change)="updateForm($event)" id="fontStyle">
+        <option value="normal">Normal</option>
+        <option value="italic">Italic</option>
+        <option value="oblique">Oblique</option>
+    </select>
+
+    <label for="fontWeight">Font Weight</label>
+    <select (change)="updateForm($event)" id="fontWeight">
+        <option value="normal">Normal</option>
+        <option value="bold">Bold</option>
+        <option value="bolder">Bolder</option>
+        <option value="lighter">Lighter</option>
+    </select>
+
 </form>

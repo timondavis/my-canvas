@@ -4,10 +4,20 @@ import { Debugger } from "../../../game-engine/debugger";
 export class TextArrangerEnvironment extends GameEnvironment {
 
     public fillOrStroke : string;
+    public fontStyle : string;
+    public fontWeight : string;
+
+
+    public message : string;
+
 
     init() {
 
         this.fillOrStroke = "fill";
+        this.fontStyle = "normal";
+        this.fontWeight = "normal";
+
+        this.message = "Hello World";
         this.assignFormListener();
     }
 
@@ -20,17 +30,21 @@ export class TextArrangerEnvironment extends GameEnvironment {
         textArrangerForm.textArrangerFormUpdate.subscribe(
 
             function( event ) {
-                let value = event.target.selectedOptions[ 0 ].value;
-                self.fillOrStroke = value;
 
-                Debugger.log( "event caught" );
-                Debugger.log( value );
+                // Build function string and invoke
+                let functionString = 'update_' + event.target.id;
+                eval( 'self.' + functionString + '( event );');
+
+                Debugger.log( event );
             },
 
             ( err ) => Debugger.log( err )
         );
-
     }
 
     update() { }
+
+    private update_renderType( event ) { this.fillOrStroke = event.target.selectedOptions[ 0 ].value; }
+    private update_fontStyle( event )  { this.fontStyle = event.target.selectedOptions[ 0 ].value; }
+    private update_fontWeight( event ) { this.fontWeight = event.target.selectedOptions[ 0 ].value; }
 }

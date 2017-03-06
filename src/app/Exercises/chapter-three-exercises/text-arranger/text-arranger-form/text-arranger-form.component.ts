@@ -15,7 +15,7 @@ export class TextArrangerFormComponent implements OnInit {
     this.textArrangerFormUpdate = new EventEmitter<Event>();
   }
 
-  public updateRenderType( event : Event ) {
+  public updateForm( event : Event ) {
 
     this.textArrangerFormUpdate.emit( event );
   }
