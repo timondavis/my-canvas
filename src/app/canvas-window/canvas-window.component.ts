@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { GameContext } from "../game-engine/game-context";
 import { GameInputObserver } from "../game-engine/game-input-observer";
-import { IsPointInPathGame } from "../Exercises/chapter-two-exercises/is-point-in-path/is-point-in-path-game";
-import { SimpleTransformationsGame } from "../Exercises/chapter-two-exercises/simple-transformations/simple-transformations-game";
+import { TextArrangerGame } from "../Exercises/chapter-three-exercises/text-arranger/text-arranger-game";
 
 @Component({
   selector: 'app-canvas-window',
@@ -11,12 +10,14 @@ import { SimpleTransformationsGame } from "../Exercises/chapter-two-exercises/si
 })
 export class CanvasWindowComponent implements OnInit  {
 
+  @ViewChild( 'textArrangerForm' ) textArrangerForm : Component;
+
   public gameContext : GameContext = CanvasWindowComponent.buildGameContext();
 
   public static buildGameContext() : GameContext {
 
     let context = new GameContext( new GameInputObserver() );
-    let game = new SimpleTransformationsGame( context );
+    let game = new TextArrangerGame( context );
 
     context.setGame( game );
 
@@ -25,5 +26,6 @@ export class CanvasWindowComponent implements OnInit  {
 
   ngOnInit() {
 
+    this.gameContext.registerRelatedComponent( 'textArrangerForm', this.textArrangerForm );
   }
 }

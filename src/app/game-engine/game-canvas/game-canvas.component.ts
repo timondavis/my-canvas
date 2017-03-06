@@ -19,7 +19,9 @@ export class GameCanvasComponent implements OnInit, AfterViewInit {
 
   @Input( 'gameContext' ) contextInput : GameContext;
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
   ngAfterViewInit() {
 

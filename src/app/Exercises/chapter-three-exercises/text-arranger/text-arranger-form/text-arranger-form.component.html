@@ -1,3 +1,8 @@
-<p>
-  text-arranger-form works!
-</p>
+<form>
+    <label for="fill-or-stroke">RenderType</label>
+    <select (change)="updateRenderType($event)" id="fill-or-stroke">
+        <option value="fill">Fill</option>
+        <option value="stroke">Stroke</option>
+        <option value="both">Both</option>
+    </select>
+</form>

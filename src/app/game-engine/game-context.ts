@@ -3,7 +3,8 @@ import { GameEnvironment } from "./game-environment";
 import { GameRenderer } from "./game-renderer";
 import { Game } from "./game";
 import { GameController } from "./game-controller";
-import { ElementRef } from "@angular/core";
+import { ComponentMap } from "./library/component-map";
+import { Component } from "@angular/core";
 
 export class GameContext {
 
@@ -13,10 +14,12 @@ export class GameContext {
     private gameEnvironment : GameEnvironment;
     private gameRenderer : GameRenderer;
     private canvasElement : Element;
+    private relatedComponents : ComponentMap;
 
     public constructor( private inputObserver : GameInputObserver ) {
 
         this.game = null;
+        this.relatedComponents = new ComponentMap();
     }
 
     public getInputObserver() {
@@ -79,5 +82,15 @@ export class GameContext {
     public setCanvasElement( canvasElementRef : Element ) {
 
         this.canvasElement = canvasElementRef;
+    }
+
+    public registerRelatedComponent( name : string, component : Component ) {
+
+        this.relatedComponents.updateComponent( name, component );
+    }
+
+    public getRelatedComponent( name : string ) {
+
+        return this.relatedComponents.getComponent( name );
     }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Debugger } from "../../../../game-engine/debugger";
 
 @Component({
   selector: 'app-text-arranger-form',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TextArrangerFormComponent implements OnInit {
 
-  constructor() { }
+  public textArrangerFormUpdate : EventEmitter<Event>;
+
+  constructor() {
+
+    this.textArrangerFormUpdate = new EventEmitter<Event>();
+  }
+
+  public updateRenderType( event : Event ) {
+
+    this.textArrangerFormUpdate.emit( event );
+  }
 
   ngOnInit() {
   }
