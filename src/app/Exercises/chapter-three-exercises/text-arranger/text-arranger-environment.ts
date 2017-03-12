@@ -47,11 +47,12 @@ export class TextArrangerEnvironment extends GameEnvironment {
         this.assignFormListener();
     }
 
-    public assignFormListener() {
+    /**
+     * Get the global form control event emitter and subscribe to the form update event
+     */
+    private assignFormListener() {
 
         let self = this;
-
-        Debugger.log( "attaching for subsription" );
 
         CanvasFormsObserverService.getInstance().getFormControlEventEmitter().subscribe(
 
@@ -68,6 +69,8 @@ export class TextArrangerEnvironment extends GameEnvironment {
         );
     }
 
+    // Update method not really implemented for this program.  At least not for now.  Everything really happens
+    // based on form events.  ::shrug::
     update() { }
 
     private update_renderType( event )   { this.fillOrStroke  = event.target.value; }

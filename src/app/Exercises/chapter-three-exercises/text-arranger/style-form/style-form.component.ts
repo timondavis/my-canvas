@@ -12,6 +12,7 @@ export class StyleFormComponent implements OnInit {
     this.colorMode = 'basic';
   }
 
+  // Exposes variable for input.  colorMode will determine which DOM children are displayed.
   @Input( 'color-mode' ) colorMode;
 
   ngOnInit() {

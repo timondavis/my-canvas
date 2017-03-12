@@ -51,6 +51,15 @@ export abstract class GameRenderer {
 
         let context = this.context.getRenderingContext();
 
+        // Alpha always 1
+        context.globalAlpha = 1;
+
+        // Ignore Shadows
+        context.shadowOffsetX = 0;
+        context.shadowOffsetY = 0;
+        context.shadowColor = '';
+        context.shadowBlur = 0;
+
         // Draw background
         context.fillStyle = this.gridBackgroundColor;
         context.fillRect( 0, 0, gridWidth, gridHeight );

@@ -10,6 +10,9 @@ export class ColorFormBasicComponent implements OnInit {
 
   constructor() { }
 
+  /**
+   * Send an event signal to the canvas form observer
+   */
   public updateForm() {
 
     CanvasFormsObserverService.getInstance().triggerEventSignal( event );
