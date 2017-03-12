@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { GameContext } from "../game-engine/game-context";
 import { GameInputObserver } from "../game-engine/game-input-observer";
 import { TextArrangerGame } from "../Exercises/chapter-three-exercises/text-arranger/text-arranger-game";
+import { CanvasFormsObserverService } from "../Exercises/chapter-three-exercises/canvas-forms-observer.service";
 
 @Component({
   selector: 'app-canvas-window',

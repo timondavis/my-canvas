@@ -1,0 +1,10 @@
+form * {
+    display: block;
+}
+
+.section {
+
+    display: inline-block;
+    float: left;
+    padding: 10px 20px;
+}

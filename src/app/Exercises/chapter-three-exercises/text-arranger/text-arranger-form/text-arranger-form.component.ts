@@ -1,14 +1,18 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Debugger } from "../../../../game-engine/debugger";
+import { CanvasFormsObserverService } from "../../canvas-forms-observer.service";
+import { ReflectiveInjector } from "@angular/core";
 
 @Component({
   selector: 'app-text-arranger-form',
   templateUrl: './text-arranger-form.component.html',
   styleUrls: ['./text-arranger-form.component.css']
 })
-export class TextArrangerFormComponent implements OnInit {
+
+export class TextArrangerFormComponent {
 
   public textArrangerFormUpdate : EventEmitter<Event>;
+  public colorMode = "basic";
 
   constructor() {
 
@@ -17,10 +21,8 @@ export class TextArrangerFormComponent implements OnInit {
 
   public updateForm( event : Event ) {
 
-    this.textArrangerFormUpdate.emit( event );
-  }
-
-  ngOnInit() {
+    Debugger.log( "change signal sent" );
+    CanvasFormsObserverService.getInstance().triggerEventSignal( event );
   }
 
 }

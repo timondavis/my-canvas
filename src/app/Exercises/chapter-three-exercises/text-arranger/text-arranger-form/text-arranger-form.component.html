@@ -1,24 +1,100 @@
 <form>
-    <label for="renderType">Render Type</label>
-    <select (change)="updateForm($event)" id="renderType">
-        <option value="fill">Fill</option>
-        <option value="stroke">Stroke</option>
-        <option value="both">Both</option>
-    </select>
+    <div ngClass="section">
+        <label for="renderType">Render Type</label>
+        <select (change)="updateForm($event)" id="renderType">
+            <option value="fill">Fill</option>
+            <option value="stroke">Stroke</option>
+            <option value="both">Both</option>
+        </select>
 
-    <label for="fontStyle">Font Style</label>
-    <select (change)="updateForm($event)" id="fontStyle">
-        <option value="normal">Normal</option>
-        <option value="italic">Italic</option>
-        <option value="oblique">Oblique</option>
-    </select>
+        <label for="fontStyle">Font Style</label>
+        <select (change)="updateForm($event)" id="fontStyle">
+            <option value="normal">Normal</option>
+            <option value="italic">Italic</option>
+            <option value="oblique">Oblique</option>
+        </select>
 
-    <label for="fontWeight">Font Weight</label>
-    <select (change)="updateForm($event)" id="fontWeight">
-        <option value="normal">Normal</option>
-        <option value="bold">Bold</option>
-        <option value="bolder">Bolder</option>
-        <option value="lighter">Lighter</option>
-    </select>
+        <label for="fontWeight">Font Weight</label>
+        <select (change)="updateForm($event)" id="fontWeight">
+            <option value="normal">Normal</option>
+            <option value="bold">Bold</option>
+            <option value="bolder">Bolder</option>
+            <option value="lighter">Lighter</option>
+        </select>
 
+        <label for="fontSize">Font Size</label>
+        <input (change)="updateForm($event)" type="range" id="fontSize"
+               min="0"
+               max="100"
+               step="1"
+               value="50"
+        >
+
+        <label for="fillType">Fill Type</label>
+        <select (change)="updateForm($event)" id="fillType">
+            <option value="basic">Basic</option>
+            <option value="linear-gradient">Linear Gradient</option>
+            <option value="radial-gradient">Radial Gradient</option>
+        </select>
+
+        <label for="textBaseline">Text Baseline</label>
+        <select (change)="updateForm($event)" id="textBaseline">
+            <option value="top">Top</option>
+            <option value="hanging">Hanging</option>
+            <option value="middle">Middle</option>
+            <option value="alphabetic">Alphabetic</option>
+            <option value="ideographic">Ideographic</option>
+            <option value="bottom">Bottom</option>
+        </select>
+
+        <label for="textAlign">Text Align</label>
+        <select (change)="updateForm($event)" id="textAlign">
+            <option value="start">Start</option>
+            <option value="center">Center</option>
+            <option value="end">End</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+        </select>
+
+        <label for="textAlpha">Text Alpha</label>
+        <input (change)="updateForm($event)" type="range" id="textAlpha"
+               max="1.0"
+               min="0.0"
+               step="0.01"
+               value="1.0"
+        >
+    </div>
+    <div ngClass="section">
+
+        <label for="shadowX">Shadow X</label>
+        <input type="range" id="shadowX" (change)="updateForm($event)"
+               min="-100"
+               max="100"
+               step="1"
+               value="0"
+        />
+
+        <label for="shadowY">Shadow Y</label>
+        <input type="range" id="shadowY" (change)="updateForm($event)"
+               min="-100"
+               max="100"
+               step="1"
+               value="0"
+        />
+
+        <label for="shadowBlur">Shadow Blur</label>
+        <input type="range" id="shadowBlur" (change)="updateForm($event)"
+               min="1"
+               max="100"
+               step="1"
+               value="1"
+        />
+
+        <label for="shadowColor">Shadow Color</label>
+        <input ngClass="jscolor" id="shadowColor" value="000000" (change)="updateForm($event)">
+
+    </div>
+    <app-style-form [color-mode]="colorMode" [ngClass]="{'environment-ignore': true, 'section': true}">
+
+    </app-style-form>
 </form>

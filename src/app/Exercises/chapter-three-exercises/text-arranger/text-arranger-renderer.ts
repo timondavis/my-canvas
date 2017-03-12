@@ -13,11 +13,19 @@ export class TextArrangerRenderer extends GameRenderer {
 
         let messageWidth = context.measureText( environment.message ).width;
 
-        context.fillStyle = "yellow";
-        context.fillRect( 0, 0, canvasWidth, canvasHeight );
+        this.clear();
 
-        // Set Fill Color
-        context.fillStyle = "red";
+        this.setGridBackgroundColor( "yellow" );
+        this.setGridColor( "red" );
+        this.drawGrid();
+
+        context.globalAlpha = 1;
+
+        // Set text baseline
+        context.textBaseline = environment.textBaseline;
+
+        // Set text alignment
+        context.textAlign = environment.textAlign;
 
         // Set Stroke Color
         context.strokeStyle = "black";
@@ -25,14 +33,23 @@ export class TextArrangerRenderer extends GameRenderer {
         // Set Stroke Width
         context.lineWidth = 2;
 
-        // Set Font
-        context.font = environment.fontStyle + " " + environment.fontWeight + " 50px serif";
+        // Set Alpha
+        context.globalAlpha = environment.textAlpha;
 
-        Debugger.log( environment.fontStyle + " " + environment.fontWeight + " 50px serif" );
+        // Set Font
+        context.font = environment.fontStyle + " " + environment.fontWeight + " " + environment.fontSize + "px serif";
+
+        // Set shadow parameters
+        context.shadowOffsetX = environment.shadowX;
+        context.shadowOffsetY = environment.shadowY;
+        context.shadowBlur    = environment.shadowBlur;
+        context.shadowColor   = environment.shadowColor;
 
         switch( environment.fillOrStroke ) {
 
             case( "fill" ): {
+
+                TextArrangerRenderer.prepareBasicFillStyle( context, environment );
 
                 context.fillText( environment.message,
                     ( canvasWidth / 2 ) - ( messageWidth / 2 ), ( canvasHeight / 2 ) );
@@ -54,5 +71,10 @@ export class TextArrangerRenderer extends GameRenderer {
             }
             default: break;
         }
+    }
+
+    protected static prepareBasicFillStyle( context : CanvasRenderingContext2D, environment : TextArrangerEnvironment ) {
+
+        context.fillStyle = environment.fillColor;
     }
 }

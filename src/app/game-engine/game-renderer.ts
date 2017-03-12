@@ -49,9 +49,6 @@ export abstract class GameRenderer {
         let gridWidth  = parseFloat ( this.context.getCanvasElement().getAttribute( 'width' ) );
         let gridHeight = parseFloat ( this.context.getCanvasElement().getAttribute( 'height' ) );
 
-        Debugger.log( gridWidth );
-        Debugger.log( gridHeight );
-
         let context = this.context.getRenderingContext();
 
         // Draw background
