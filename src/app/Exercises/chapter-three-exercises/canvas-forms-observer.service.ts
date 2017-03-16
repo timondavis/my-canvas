@@ -1,7 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Debugger } from "../../game-engine/debugger";
 
-@Injectable()
 /**
  * Responsible for handling communications between the Game Environment and forms on the DOM
  *

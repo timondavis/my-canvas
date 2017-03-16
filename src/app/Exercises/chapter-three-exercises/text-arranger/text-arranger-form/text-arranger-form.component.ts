@@ -1,7 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 import { Debugger } from "../../../../game-engine/debugger";
 import { CanvasFormsObserverService } from "../../canvas-forms-observer.service";
-import { ReflectiveInjector } from "@angular/core";
 
 @Component({
   selector: 'app-text-arranger-form',
@@ -19,10 +18,11 @@ export class TextArrangerFormComponent {
     this.textArrangerFormUpdate = new EventEmitter<Event>();
   }
 
-  public updateForm( event : Event ) {
+  public updateForm( event ) {
 
-    Debugger.log( "change signal sent" );
+    Debugger.log( event );
     CanvasFormsObserverService.getInstance().triggerEventSignal( event );
-  }
 
+    if ( 'fillType' == event.target.id ) { this.colorMode = event.target.value; }
+  }
 }

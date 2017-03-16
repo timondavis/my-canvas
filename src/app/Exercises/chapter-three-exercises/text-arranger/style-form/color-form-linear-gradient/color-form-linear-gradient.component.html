@@ -1,3 +1,21 @@
-<p>
-  color-form-linear-gradient works!
-</p>
+<div [ngClass]="{'color-form':true}">
+  <h3>Linear Gradient</h3>
+
+  <label for="linearGradientCenterPoint">Center Point</label>
+  <input type="range" id="linearGradientCenterPoint"
+         min="0"
+         max="1"
+         step="0.05"
+         value=".50" />
+
+  <label for="linearGradientLeftColor">Left Color</label>
+  <input [ngClass]="{ 'jscolor': true }" id="linearGradientLeftColor" value="#ff0000" />
+
+  <label for="linearGradientCenterColor">Center Color</label>
+  <input [ngClass]="{ 'jscolor': true }" id="linearGradientCenterColor" value="#0000ff"/>
+
+  <label for="linearGradientCenterColor">Center Color</label>
+  <input [ngClass]="{ 'jscolor': true }" id="linearGradientRightColor" value="#ff0000"/>
+
+
+</div>
