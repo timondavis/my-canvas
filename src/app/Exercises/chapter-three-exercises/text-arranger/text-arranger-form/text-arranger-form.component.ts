@@ -1,14 +1,19 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, NgModule } from '@angular/core';
 import { Debugger } from "../../../../game-engine/debugger";
 import { CanvasFormsObserverService } from "../../canvas-forms-observer.service";
+import { ColorPickerModule } from "angular2-color-picker";
 
 @Component({
   selector: 'app-text-arranger-form',
   templateUrl: './text-arranger-form.component.html',
-  styleUrls: ['./text-arranger-form.component.css']
+  styleUrls: ['./text-arranger-form.component.css'],
 })
 
+@NgModule({ imports : [ ColorPickerModule ] })
+
 export class TextArrangerFormComponent {
+
+  private color: string = '#000000';
 
   public textArrangerFormUpdate : EventEmitter<Event>;
   public colorMode = "basic";
@@ -18,11 +23,12 @@ export class TextArrangerFormComponent {
     this.textArrangerFormUpdate = new EventEmitter<Event>();
   }
 
-  public updateForm( event ) {
+  private updateForm( event ) {
 
     Debugger.log( event );
     CanvasFormsObserverService.getInstance().triggerEventSignal( event );
 
     if ( 'fillType' == event.target.id ) { this.colorMode = event.target.value; }
   }
+
 }

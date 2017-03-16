@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ColorPickerModule } from "angular2-color-picker";
 
 import { AppComponent } from './app.component';
 import { CanvasWindowComponent } from './canvas-window/canvas-window.component';
@@ -12,6 +13,8 @@ import { ColorFormBasicComponent } from './Exercises/chapter-three-exercises/tex
 import { ColorFormLinearGradientComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-linear-gradient/color-form-linear-gradient.component';
 import { ColorFormRadialGradientComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-radial-gradient/color-form-radial-gradient.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,14 +24,15 @@ import { ColorFormRadialGradientComponent } from './Exercises/chapter-three-exer
     StyleFormComponent,
     ColorFormBasicComponent,
     ColorFormLinearGradientComponent,
-    ColorFormRadialGradientComponent
+    ColorFormRadialGradientComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ColorPickerModule
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

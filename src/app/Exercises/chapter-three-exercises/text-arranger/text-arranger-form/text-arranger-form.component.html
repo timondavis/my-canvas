@@ -90,8 +90,8 @@
                value="1"
         />
 
-        <label for="shadowColor">Shadow Color</label>
-        <input ngClass="jscolor" id="shadowColor" value="000000" (change)="updateForm($event)">
+        <input [style.background]="color" [colorPicker]="color" [value]="color"
+               (colorPickerChange)="color = $event"/>
 
     </div>
     <app-style-form [color-mode]="colorMode" [ngClass]="{'environment-ignore': true, 'section': true}">

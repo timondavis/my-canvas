@@ -1,6 +1,8 @@
 import { EventEmitter } from '@angular/core';
 import { Debugger } from "../../game-engine/debugger";
 
+let thisWindow = window;
+
 /**
  * Responsible for handling communications between the Game Environment and forms on the DOM
  *
@@ -14,12 +16,9 @@ export class CanvasFormsObserverService {
   // Event emitter for transmitting  form control events
   private formControlEventEmitter : EventEmitter<any>;
 
-  /**
-   * @constructor
-   */
   private constructor() {
 
-    this.formControlEventEmitter = new EventEmitter<any>();
+        this.formControlEventEmitter = new EventEmitter<any>();
   }
 
   /**
