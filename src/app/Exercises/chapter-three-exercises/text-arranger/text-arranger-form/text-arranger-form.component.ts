@@ -23,10 +23,15 @@ export class TextArrangerFormComponent {
     this.textArrangerFormUpdate = new EventEmitter<Event>();
   }
 
+  private updateColorField( id : any, value : String ) {
+
+    CanvasFormsObserverService.getInstance().triggerEventSignal( id, value );
+  }
+
   private updateForm( event ) {
 
     Debugger.log( event );
-    CanvasFormsObserverService.getInstance().triggerEventSignal( event );
+    CanvasFormsObserverService.getInstance().triggerEventSignal( event.target.id, event.target.value );
 
     if ( 'fillType' == event.target.id ) { this.colorMode = event.target.value; }
   }

@@ -67,7 +67,7 @@
     <div ngClass="section">
 
         <label for="shadowX">Shadow X</label>
-        <input type="range" id="shadowX" (change)="updateForm($event)"
+        <input type="range" id="shadowX" (change)="updateForm( $event )"
                min="-100"
                max="100"
                step="1"
@@ -90,8 +90,9 @@
                value="1"
         />
 
-        <input [style.background]="color" [colorPicker]="color" [value]="color"
-               (colorPickerChange)="color = $event"/>
+        <label for="shadowColor">Shadow Color</label>
+        <input id="shadowColor" [style.background]="color" [colorPicker]="color" [value]="color"
+               (colorPickerChange)="updateColorField( 'shadowColor', $event );color=$event" />
 
     </div>
     <app-style-form [color-mode]="colorMode" [ngClass]="{'environment-ignore': true, 'section': true}">

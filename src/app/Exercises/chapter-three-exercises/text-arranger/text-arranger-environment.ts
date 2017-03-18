@@ -60,9 +60,11 @@ export class TextArrangerEnvironment extends GameEnvironment {
 
                 Debugger.log( 'Emitted event trigger caught on subscription' );
                 // Build function string and invoke
-                let functionString = 'update_' + event.target.id;
+                let functionString = 'update_' + event.id;
+                Debugger.log( functionString );
+                Debugger.log( 'self.' + functionString + '( ' + event.value + ' );'  );
 
-                eval( 'self.' + functionString + '( event );' );
+                eval( 'self.' + functionString + '( "' + event.value + '" );' );
             },
 
             ( err ) => Debugger.log( err )
@@ -73,17 +75,17 @@ export class TextArrangerEnvironment extends GameEnvironment {
     // based on form events.  ::shrug::
     update() { }
 
-    private update_renderType( event )   { this.fillOrStroke  = event.target.value; }
-    private update_fontStyle( event )    { this.fontStyle     = event.target.value; }
-    private update_fontWeight( event )   { this.fontWeight    = event.target.value; }
-    private update_fontSize( event )     { this.fontSize      = event.target.value; }
-    private update_fillColor( event )    { this.fillColor     = '#' + event.target.value; }
-    private update_textBaseline( event ) { this.textBaseline  = event.target.value; }
-    private update_textAlign( event )    { this.textAlign     = event.target.value; }
-    private update_textAlpha( event )    { this.textAlpha     = event.target.value; }
-    private update_shadowX( event )      { this.shadowX       = event.target.value; }
-    private update_shadowY( event )      { this.shadowY       = event.target.value; }
-    private update_shadowBlur( event )   { this.shadowBlur    = event.target.value; }
-    private update_shadowColor( event )  { this.shadowColor   = '#' + event.target.value; }
-    private update_fillType( event )     { this.fillType      = event.target.value; }
+    public update_renderType( value )   { this.fillOrStroke  = value; }
+    public update_fontStyle( value )    { this.fontStyle     = value; }
+    public update_fontWeight( value )   { this.fontWeight    = value; }
+    public update_fontSize( value )     { this.fontSize      = value; }
+    public update_fillColor( value )    { this.fillColor     = value; }
+    public update_textBaseline( value ) { this.textBaseline  = value; }
+    public update_textAlign( value )    { this.textAlign     = value; }
+    public update_textAlpha( value )    { this.textAlpha     = value; }
+    public update_shadowX( value )      { this.shadowX       = value; }
+    public update_shadowY( value )      { this.shadowY       = value; }
+    public update_shadowBlur( value )   { this.shadowBlur    = value; }
+    public update_shadowColor( value )  { this.shadowColor   = value; }
+    public update_fillType( value )     { this.fillType      = value; }
 }

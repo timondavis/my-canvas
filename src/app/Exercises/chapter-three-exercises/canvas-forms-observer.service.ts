@@ -47,11 +47,16 @@ export class CanvasFormsObserverService {
 
   /**
    * For use by components - signals to the observer that a control has been updated.
-   * @param event
+   *
+   * @param id : String  The ID of the signaling component
+   * @param value : any  The value of the triggering control
    */
-  public triggerEventSignal( event ) {
+  public triggerEventSignal( id : String , value : any ) {
 
       Debugger.log( 'emitting event' );
-      this.formControlEventEmitter.emit( event );
+
+      let eventSignal = { 'id' : id, 'value': value };
+
+      this.formControlEventEmitter.emit( eventSignal );
   }
 }
