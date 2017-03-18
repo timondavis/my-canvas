@@ -1,17 +1,28 @@
 import { GameRenderer } from "../../../game-engine/game-renderer";
 import { TextArrangerEnvironment } from "./text-arranger-environment";
 import { Debugger } from "../../../game-engine/debugger";
+import { BasicRenderer } from "./renderers/basic-renderer";
+import { GameContext } from "../../../game-engine/game-context";
+import { RenderingData } from "./renderers/rendering-data";
+import { LinearGradientRenderer } from "./renderers/linear-gradient-renderer";
 export class TextArrangerRenderer extends GameRenderer {
 
     draw() {
 
-        let context = this.context.getRenderingContext();
-        let environment = <TextArrangerEnvironment> this.context.getGameEnvironment();
+        let renderingData = new RenderingData();
 
-        let canvasWidth  = parseFloat( this.context.getCanvasElement().getAttribute( 'width' ) );
-        let canvasHeight = parseFloat( this.context.getCanvasElement().getAttribute( 'height' ) );
+        let context =
+            renderingData.context = this.context.getRenderingContext();
+        let environment =
+            renderingData.environment = <TextArrangerEnvironment> this.context.getGameEnvironment();
 
-        let messageWidth = context.measureText( environment.message ).width;
+        let canvasWidth  =
+            renderingData.canvasWidth = parseFloat( this.context.getCanvasElement().getAttribute( 'width' ) );
+        let canvasHeight =
+            renderingData.canvasHeight = parseFloat( this.context.getCanvasElement().getAttribute( 'height' ) );
+
+        let messageWidth =
+            renderingData.messageWidth = context.measureText( environment.message ).width;
 
         this.clear();
 
@@ -45,36 +56,8 @@ export class TextArrangerRenderer extends GameRenderer {
         context.shadowBlur    = environment.shadowBlur;
         context.shadowColor   = environment.shadowColor;
 
-        switch( environment.fillOrStroke ) {
 
-            case( "fill" ): {
-
-                TextArrangerRenderer.prepareBasicFillStyle( context, environment );
-
-                context.fillText( environment.message,
-                    ( canvasWidth / 2 ) - ( messageWidth / 2 ), ( canvasHeight / 2 ) );
-                break;
-            }
-            case( "stroke" ): {
-
-                context.strokeText( environment.message,
-                    ( canvasWidth / 2 ) - ( messageWidth / 2 ), ( canvasHeight / 2 ) );
-                break;
-            }
-            case( "both" ): {
-
-                context.fillText( environment.message,
-                    ( canvasWidth / 2 ) - ( messageWidth / 2 ), ( canvasHeight / 2 ) );
-                context.strokeText( environment.message,
-                    ( canvasWidth / 2 ) - ( messageWidth / 2 ), ( canvasHeight / 2 ) );
-                break;
-            }
-            default: break;
-        }
-    }
-
-    protected static prepareBasicFillStyle( context : CanvasRenderingContext2D, environment : TextArrangerEnvironment ) {
-
-        context.fillStyle = environment.fillColor;
+        if ( environment.fillType == 'basic' ) { BasicRenderer.draw( renderingData ); }
+        if ( environment.fillType == 'linear-gradient' ) { LinearGradientRenderer.draw( renderingData ); }
     }
 }

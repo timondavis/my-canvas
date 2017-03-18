@@ -24,7 +24,6 @@ import { ColorFormRadialGradientComponent } from './Exercises/chapter-three-exer
     StyleFormComponent,
     ColorFormBasicComponent,
     ColorFormLinearGradientComponent,
-    ColorFormRadialGradientComponent,
   ],
   imports: [
     BrowserModule,

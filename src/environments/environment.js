@@ -7,6 +7,6 @@ exports.environment = {
     production: false
 };
 exports.gameEngineConfiguration = {
-    showDebugger: false,
-    showInputLogInDebugger: true
+    showDebugger: true,
+    showInputLogInDebugger: false
 };
