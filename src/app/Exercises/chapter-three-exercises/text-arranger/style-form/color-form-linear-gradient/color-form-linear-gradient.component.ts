@@ -8,9 +8,9 @@ import { TextArrangerFormComponent } from "../../text-arranger-form/text-arrange
 })
 export class ColorFormLinearGradientComponent extends TextArrangerFormComponent implements OnInit {
 
-  private leftColor = '#f00';
-  private centerColor = '#00f';
-  private rightColor = '#f00';
+  private leftColorFill   : String  = '#f00';
+  private centerColorFill : String  = '#00f';
+  private rightColorFill  : String  = '#f00';
 
 
   ngOnInit() {

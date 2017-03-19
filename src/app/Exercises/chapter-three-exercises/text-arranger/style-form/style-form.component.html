@@ -1,4 +1,9 @@
 <div>
-   <app-color-form-basic *ngIf="colorMode == 'basic'"></app-color-form-basic>
-   <app-color-form-linear-gradient *ngIf="colorMode == 'linear-gradient'"></app-color-form-linear-gradient>
+   <app-color-form-basic [ngClass]="{'color-form': true }" *ngIf="colorModeFill == 'basic'"></app-color-form-basic>
+   <app-color-form-basic-stroke
+           [ngClass]="{'color-form': true }" *ngIf="colorModeStroke == 'basic' "></app-color-form-basic-stroke>
+   <app-color-form-linear-gradient
+           [ngClass]="{'color-form': true}" *ngIf="colorModeFill == 'linear-gradient'"></app-color-form-linear-gradient>
+   <app-color-form-linear-gradient-stroke
+            [ngClass]="{'color-form': true}" *ngIf="colorModeStroke == 'linear-gradient'"></app-color-form-linear-gradient-stroke>
 </div>

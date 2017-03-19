@@ -1,24 +1,27 @@
 <div [ngClass]="{'color-form':true}">
-  <h3>Linear Gradient</h3>
+  <h3>Linear Gradient Fill</h3>
 
-  <label for="linearGradientCenterPoint">Center Point</label>
-  <input type="range" id="linearGradientCenterPoint"
-         min="0"
-         max="1"
+  <label for="linearGradientCenterPointFill">Center Point</label>
+  <input type="range" id="linearGradientCenterPointFill" (change)="updateForm($event)"
+         min="0.10"
+         max="0.90"
          step="0.05"
          value=".50" />
 
 
-  <label for="linearGradientLeftColor">Left Color</label>
-  <input id="linearGradientLeftColor" [style.background]="leftColor" [colorPicker]="leftColor" [value]="leftColor"
-         (colorPickerChange)="updateColorField( 'linearGradientLeftColor', $event );leftColor=$event" />
+  <label for="linearGradientLeftColorFill">Left Color</label>
+  <input id="linearGradientLeftColorFill" [style.background]="leftColorFill" [colorPicker]="leftColorFill"
+         [value]="leftColorFill"
+         (colorPickerChange)="updateColorField( 'linearGradientLeftColorFill', $event );leftColorFill=$event" />
 
-  <label for="linearGradientCenterColor">Center Color</label>
-  <input id="linearGradientCenterColor" [style.background]="centerColor" [colorPicker]="centerColor" [value]="centerColor"
-         (colorPickerChange)="updateColorField( 'linearGradientCenterColor', $event );centerColor=$event" />
+  <label for="linearGradientCenterColorFill">Center Color</label>
+  <input id="linearGradientCenterColorFill" [style.background]="centerColorFill" [colorPicker]="centerColorFill"
+         [value]="centerColorFill"
+         (colorPickerChange)="updateColorField( 'linearGradientCenterColorFill', $event );centerColorFill=$event" />
 
-  <label for="linearGradientRightColor">Right Color</label>
-  <input id="linearGradientRightColor" [style.background]="rightColor" [colorPicker]="rightColor" [value]="rightColor"
-         (colorPickerChange)="updateColorField( 'linearGradientRightColor', $event );rightColor=$event" />
+  <label for="linearGradientRightColorFill">Right Color</label>
+  <input id="linearGradientRightColorFill" [style.background]="rightColorFill" [colorPicker]="rightColorFill"
+         [value]="rightColorFill"
+         (colorPickerChange)="updateColorField( 'linearGradientRightColorFill', $event );rightColorFill=$event" />
 
 </div>

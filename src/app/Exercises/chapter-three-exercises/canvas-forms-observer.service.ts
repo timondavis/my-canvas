@@ -53,8 +53,6 @@ export class CanvasFormsObserverService {
    */
   public triggerEventSignal( id : String , value : any ) {
 
-      Debugger.log( 'emitting event' );
-
       let eventSignal = { 'id' : id, 'value': value };
 
       this.formControlEventEmitter.emit( eventSignal );

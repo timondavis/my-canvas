@@ -1,0 +1,6 @@
+<h3>Basic Color Stroke</h3>
+<form>
+    <label for="strokeColor">Stroke Color</label>
+    <input id="strokeColor" [style.background]="strokeColor" [colorPicker]="strokeColor" [value]="strokeColor"
+           (colorPickerChange)="updateColorField( 'strokeColor', $event );strokeColor=$event" />
+</form>

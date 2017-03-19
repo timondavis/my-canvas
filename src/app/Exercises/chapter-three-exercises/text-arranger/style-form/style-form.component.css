@@ -1,6 +1,6 @@
 .color-form {
-
-    border-left: 1px solid black;
+    display: block;
+    float: left;
+    padding-right: 15px;
 }
-
 

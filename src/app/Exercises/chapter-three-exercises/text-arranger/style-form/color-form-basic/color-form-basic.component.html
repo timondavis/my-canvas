@@ -4,8 +4,6 @@
 <input id="fillColor" [style.background]="color" [colorPicker]="color" [value]="color"
        (colorPickerChange)="updateColorField( 'fillColor', $event );color=$event" />
 
-<label for="strokeColor">Stroke Color</label>
-<input id="strokeColor" [style.background]="strokeColor" [colorPicker]="strokeColor" [value]="strokeColor"
-       (colorPickerChange)="updateColorField( 'strokeColor', $event );strokeColor=$event" />
+
 </div>
 

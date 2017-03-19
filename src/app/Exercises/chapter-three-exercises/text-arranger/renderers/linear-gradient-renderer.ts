@@ -1,31 +1,46 @@
 import { RenderingData } from "./rendering-data";
 import { TextArrangerEnvironment } from "../text-arranger-environment";
 import { BasicRenderer } from "./basic-renderer";
+import { Debugger } from "../../../../game-engine/debugger";
 export class LinearGradientRenderer {
+
+    private static centerPointWidth : number = 0.10;
 
     public static draw( renderingData : RenderingData ) {
 
+    }
+
+    public static fillRender( renderingData : RenderingData ) {
+
+        // Grab the game environment
         let environment = <TextArrangerEnvironment> renderingData.environment;
 
-        let gradient = renderingData.context.createLinearGradient(
+        // Focus up the center a bit.
+        let centerPoint : number = environment.linearGradientCenterPointFill;
+
+        let centerPointLeft : number = ( centerPoint - LinearGradientRenderer.centerPointWidth > 0.0 ) ?
+            centerPoint - LinearGradientRenderer.centerPointWidth :
+            0.0;
+
+        // Forgive the weird way of adding - strings are getting built instead of math and I cannot understand why.
+        let centerPointRight : number = ( ( centerPoint - ( -1 * LinearGradientRenderer.centerPointWidth ) ) < 1.0 ) ?
+            centerPoint - ( -1 * LinearGradientRenderer.centerPointWidth ) :
+            1.0;
+
+        // Make the gradient
+        let fillGradient = renderingData.context.createLinearGradient(
             (renderingData.canvasWidth / 2 ) - (renderingData.messageWidth), 0,
             (renderingData.canvasWidth / 2 ) + (renderingData.messageWidth), 0
         );
 
-        gradient.addColorStop( 0, environment.linearGradientLeftColor );
-        gradient.addColorStop( 0.5, environment.linearGradientCenterColor );
-        gradient.addColorStop( 1.0, environment.linearGradientRightColor );
+        fillGradient.addColorStop( 0, environment.linearGradientLeftColorFill );
+        fillGradient.addColorStop( centerPointLeft, environment.linearGradientLeftColorFill );
+        fillGradient.addColorStop( environment.linearGradientCenterPointFill, environment.linearGradientCenterColorFill );
+        fillGradient.addColorStop( centerPointRight, environment.linearGradientRightColorFill );
+        fillGradient.addColorStop( 1.0, environment.linearGradientRightColorFill );
 
-        if ( environment.fillOrStroke == 'fill' ) { LinearGradientRenderer.fillRender( renderingData, gradient); }
-        else if ( environment.fillOrStroke == 'stroke' ) { LinearGradientRenderer.strokeRender( renderingData ); }
-        else { LinearGradientRenderer.fillAndStrokeRender( renderingData, gradient ); }
-    }
-
-    private static fillRender( renderingData : RenderingData, gradient : any ) {
-
-        let environment = <TextArrangerEnvironment> renderingData.environment;
-
-        renderingData.context.fillStyle = gradient;
+        // Assign gradient and draw the text
+        renderingData.context.fillStyle = fillGradient;
 
         renderingData.context.fillText(
             environment.message,
@@ -34,27 +49,42 @@ export class LinearGradientRenderer {
         );
     }
 
-    private static strokeRender( renderingData : RenderingData ) {
-
-        BasicRenderer.draw( renderingData );
-    }
-
-    private static fillAndStrokeRender( renderingData : RenderingData, gradient : any ) {
-
+    public static strokeRender( renderingData : RenderingData ) {
 
         let environment = <TextArrangerEnvironment> renderingData.environment;
 
+        let centerPoint : number = environment.linearGradientCenterPointStroke;
 
+        let centerPointLeft : number = ( centerPoint - LinearGradientRenderer.centerPointWidth > 0.0 ) ?
+            centerPoint - LinearGradientRenderer.centerPointWidth :
+            0.0;
 
-        renderingData.context.fillStyle = gradient;
-        renderingData.context.strokeStyle = environment.strokeColor;
+        // Forgive the weird way of adding - strings are getting built instead of math and I cannot understand why.
+        let centerPointRight : number = ( ( centerPoint - ( -1 * LinearGradientRenderer.centerPointWidth ) ) < 1.0 ) ?
+            centerPoint - ( -1 * LinearGradientRenderer.centerPointWidth ) :
+            1.0;
 
-        renderingData.context.fillText(
+        let strokeGradient = renderingData.context.createLinearGradient(
+            (renderingData.canvasWidth / 2 ) - (renderingData.messageWidth), 0,
+            (renderingData.canvasWidth / 2 ) + (renderingData.messageWidth), 0
+        );
+
+        strokeGradient.addColorStop( 0, environment.linearGradientLeftColorStroke );
+        strokeGradient.addColorStop( centerPointLeft, environment.linearGradientLeftColorStroke );
+        strokeGradient.addColorStop( environment.linearGradientCenterPointStroke, environment.linearGradientCenterColorStroke );
+        strokeGradient.addColorStop( centerPointRight, environment.linearGradientRightColorStroke );
+        strokeGradient.addColorStop( 1.0, environment.linearGradientRightColorFill );
+
+        renderingData.context.strokeStyle = strokeGradient;
+
+        renderingData.context.strokeText(
             environment.message,
             ( renderingData.canvasWidth / 2 ) - ( renderingData.messageWidth / 2 ),
             ( renderingData.canvasHeight / 2 )
         );
-        renderingData.context.strokeText( environment.message,
-            ( renderingData.canvasWidth / 2 ) - ( renderingData.messageWidth / 2 ), ( renderingData.canvasHeight / 2 ) );
     }
+
+
+
+
 }

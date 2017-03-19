@@ -16,7 +16,8 @@ export class TextArrangerFormComponent {
   private color: string = '#000000';
 
   public textArrangerFormUpdate : EventEmitter<Event>;
-  public colorMode = "basic";
+  public colorModeFill = "basic";
+  public colorModeStroke = "basic";
 
   constructor() {
 
@@ -30,10 +31,10 @@ export class TextArrangerFormComponent {
 
   private updateForm( event ) {
 
-    Debugger.log( event );
     CanvasFormsObserverService.getInstance().triggerEventSignal( event.target.id, event.target.value );
 
-    if ( 'fillType' == event.target.id ) { this.colorMode = event.target.value; }
+    if ( 'fillType' == event.target.id ) { this.colorModeFill = event.target.value; }
+    if ( 'strokeType' == event.target.id ) { this.colorModeStroke = event.target.value; }
   }
 
 }

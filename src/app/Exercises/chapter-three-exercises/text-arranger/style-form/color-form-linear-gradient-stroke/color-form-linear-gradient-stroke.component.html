@@ -1,0 +1,27 @@
+<div [ngClass]="{'color-form':true}">
+  <h3>Linear Gradient Stroke</h3>
+
+  <label for="linearGradientCenterPointStroke">Center Point</label>
+  <input type="range" id="linearGradientCenterPointStroke" (change)="updateForm($event)"
+         min="0.10"
+         max="0.90"
+         step="0.05"
+         value=".50" />
+
+
+  <label for="linearGradientLeftColorStroke">Left Color</label>
+  <input id="linearGradientLeftColorStroke" [style.background]="leftColorStroke" [colorPicker]="leftColorStroke"
+         [value]="leftColorStroke"
+         (colorPickerChange)="updateColorField( 'linearGradientLeftColorStroke', $event );leftColorStroke=$event" />
+
+  <label for="linearGradientCenterColorStroke">Center Color</label>
+  <input id="linearGradientCenterColorStroke" [style.background]="centerColorStroke" [colorPicker]="centerColorStroke"
+         [value]="centerColorStroke"
+         (colorPickerChange)="updateColorField( 'linearGradientCenterColorStroke', $event );centerColorStroke=$event" />
+
+  <label for="linearGradientRightColorStroke">Right Color</label>
+  <input id="linearGradientRightColorStroke" [style.background]="rightColorStroke" [colorPicker]="rightColorStroke"
+         [value]="rightColorStroke"
+         (colorPickerChange)="updateColorField( 'linearGradientRightColorStroke', $event );rightColorStroke=$event" />
+
+</div>

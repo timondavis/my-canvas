@@ -9,11 +9,13 @@ export class StyleFormComponent implements OnInit {
 
   constructor() {
 
-    this.colorMode = 'basic';
+    this.colorModeFill = 'basic';
+    this.colorModeStroke = 'basic';
   }
 
   // Exposes variable for input.  colorMode will determine which DOM children are displayed.
-  @Input( 'color-mode' ) colorMode;
+  @Input( 'color-mode-fill' ) colorModeFill;
+  @Input( 'color-mode-stroke' ) colorModeStroke;
 
   ngOnInit() {
   }

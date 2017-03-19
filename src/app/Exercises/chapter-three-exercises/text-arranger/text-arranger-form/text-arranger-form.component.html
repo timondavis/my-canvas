@@ -36,6 +36,12 @@
             <option value="linear-gradient">Linear Gradient</option>
         </select>
 
+        <label for="strokeType">Stroke Type</label>
+        <select (change)="updateForm($event)" id="strokeType">
+            <option value="basic">Basic</option>
+            <option value="linear-gradient">Linear Gradient</option>
+        </select>
+
         <label for="textBaseline">Text Baseline</label>
         <select (change)="updateForm($event)" id="textBaseline">
             <option value="top">Top</option>
@@ -94,6 +100,7 @@
                (colorPickerChange)="updateColorField( 'shadowColor', $event );color=$event" />
 
     </div>
-    <app-style-form [color-mode]="colorMode" [ngClass]="{'environment-ignore': true, 'section': true}">
+    <app-style-form [color-mode-fill]="colorModeFill"
+                    [color-mode-stroke]="colorModeStroke" [ngClass]="{'environment-ignore': true, 'section': true}">
     </app-style-form>
 </form>

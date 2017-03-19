@@ -56,6 +56,47 @@ export class TextArrangerRenderer extends GameRenderer {
         context.shadowBlur    = environment.shadowBlur;
         context.shadowColor   = environment.shadowColor;
 
+        // Draw fills
+        if ( 'fill' == environment.fillOrStroke || 'both' == environment.fillOrStroke ) {
+
+            switch( environment.fillType ) {
+
+                case( 'basic' ): {
+
+                    BasicRenderer.fillRender( renderingData );
+                    break;
+                }
+
+                case( 'linear-gradient' ): {
+
+                    LinearGradientRenderer.fillRender( renderingData );
+                    break;
+                }
+
+                default: break;
+            }
+        }
+
+        if ( 'stroke' == environment.fillOrStroke || 'both' == environment.fillOrStroke ) {
+
+            switch( environment.strokeType ) {
+
+                case( 'basic' ): {
+
+                    BasicRenderer.strokeRender( renderingData );
+                    break;
+                }
+
+                case( 'linear-gradient' ): {
+
+                    LinearGradientRenderer.strokeRender( renderingData );
+                }
+            }
+        }
+
+
+
+
 
         if ( environment.fillType == 'basic' ) { BasicRenderer.draw( renderingData ); }
         if ( environment.fillType == 'linear-gradient' ) { LinearGradientRenderer.draw( renderingData ); }

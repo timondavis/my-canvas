@@ -14,9 +14,15 @@ export class TextArrangerEnvironment extends GameEnvironment {
 
     public strokeColor;
 
-    public linearGradientLeftColor : string;
-    public linearGradientCenterColor: string;
-    public linearGradientRightColor : string;
+    public linearGradientLeftColorFill : string
+    public linearGradientCenterColorFill : string;
+    public linearGradientRightColorFill : string;
+    public linearGradientCenterPointFill : number;
+
+    public linearGradientLeftColorStroke : string
+    public linearGradientCenterColorStroke : string;
+    public linearGradientRightColorStroke : string;
+    public linearGradientCenterPointStroke : number;
 
     public textBaseline : string;
     public textAlign : string;
@@ -27,7 +33,8 @@ export class TextArrangerEnvironment extends GameEnvironment {
     public shadowBlur : number;
     public shadowColor: string;
 
-    public fillType:string;
+    public fillType : string;
+    public strokeType: string;
 
     public message : string;
 
@@ -46,6 +53,7 @@ export class TextArrangerEnvironment extends GameEnvironment {
         this.textAlpha = 1.0;
 
         this.fillType = 'basic';
+        this.strokeType = 'basic';
 
         this.shadowX = 0;
         this.shadowY = 0;
@@ -54,9 +62,15 @@ export class TextArrangerEnvironment extends GameEnvironment {
 
         this.message = "Hello pretty World";
 
-        this.linearGradientLeftColor = '#f00';
-        this.linearGradientCenterColor = '#00f';
-        this.linearGradientRightColor = '#f00';
+        this.linearGradientLeftColorFill = '#f00';
+        this.linearGradientCenterColorFill = '#00f';
+        this.linearGradientRightColorFill = '#f00';
+        this.linearGradientCenterPointFill = 0.50;
+
+        this.linearGradientLeftColorStroke = '#f00';
+        this.linearGradientCenterColorStroke = '#00f';
+        this.linearGradientRightColorStroke = '#f00';
+        this.linearGradientCenterPointStroke = 0.50;
 
         this.assignFormListener();
     }
@@ -72,11 +86,8 @@ export class TextArrangerEnvironment extends GameEnvironment {
 
             function( event ) {
 
-                Debugger.log( 'Emitted event trigger caught on subscription' );
                 // Build function string and invoke
                 let functionString = 'update_' + event.id;
-                Debugger.log( functionString );
-                Debugger.log( 'self.' + functionString + '( ' + event.value + ' );'  );
 
                 eval( 'self.' + functionString + '( "' + event.value + '" );' );
             },
@@ -103,8 +114,13 @@ export class TextArrangerEnvironment extends GameEnvironment {
     public update_shadowColor( value )  { this.shadowColor   = value; }
     public update_strokeColor( value )  { this.strokeColor   = value; }
     public update_fillType( value )     { this.fillType      = value; }
-    public update_linearGradientLeftColor( value ) { this.linearGradientLeftColor = value; }
-    public update_linearGradientCenterColor( value ) { this.linearGradientCenterColor = value; }
-    public update_linearGradientRightColor( value ) { this.linearGradientRightColor = value; }
-
+    public update_strokeType( value )   { this.strokeType    = value; }
+    public update_linearGradientLeftColorFill( value ) { this.linearGradientLeftColorFill = value; }
+    public update_linearGradientCenterColorFill( value ) { this.linearGradientCenterColorFill = value; }
+    public update_linearGradientRightColorFill( value ) { this.linearGradientRightColorFill = value; }
+    public update_linearGradientCenterPointFill( value ) { this.linearGradientCenterPointFill = value; }
+    public update_linearGradientLeftColorStroke( value ) { this.linearGradientLeftColorStroke = value; }
+    public update_linearGradientRightColorStroke( value ) { this.linearGradientRightColorStroke = value; }
+    public update_linearGradientCenterColorStroke( value ) { this.linearGradientCenterColorStroke = value; }
+    public update_linearGradientCenterPointStroke( value ) { this.linearGradientCenterPointStroke = value; }
 }
