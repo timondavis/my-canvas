@@ -1,0 +1,18 @@
+<form>
+  <h3>Radial Gradient Stroke</h3>
+  <label for="radialGradientOutsideColorStroke">Outside Color</label>
+  <input id="radialGradientOutsideColorStroke" [style.background]="outsideColorStroke" [colorPicker]="outsideColorStroke"
+         [value]="outsideColorStroke"
+         (colorPickerChange)="updateColorField( 'radialGradientOutsideColorStroke', $event );outsideColorStroke=$event" />
+
+  <label for="radialGradientCenterColorStroke">Center Color</label>
+  <input id="radialGradientCenterColorStroke" [style.background]="centerColorStroke" [colorPicker]="centerColorStroke"
+         [value]="centerColorStroke"
+         (colorPickerChange)="updateColorField( 'radialGradientCenterColorStroke', $event );centerColorStroke=$event" />
+
+  <label for="radialGradientInsideColorStroke">Inside Color</label>
+  <input id="radialGradientInsideColorStroke" [style.background]="insideColorStroke" [colorPicker]="insideColorStroke"
+         [value]="insideColorStroke"
+         (colorPickerChange)="updateColorField( 'radialGradientInsideColorStroke', $event );insideColorStroke=$event" />
+
+</form>

@@ -24,6 +24,14 @@ export class TextArrangerEnvironment extends GameEnvironment {
     public linearGradientRightColorStroke : string;
     public linearGradientCenterPointStroke : number;
 
+    public radialGradientOutsideColorFill : string;
+    public radialGradientCenterColorFill : string;
+    public radialGradientInsideColorFill : string;
+
+    public radialGradientOutsideColorStroke : string;
+    public radialGradientCenterColorStroke : string;
+    public radialGradientInsideColorStroke : string;
+
     public textBaseline : string;
     public textAlign : string;
     public textAlpha : number;
@@ -71,6 +79,15 @@ export class TextArrangerEnvironment extends GameEnvironment {
         this.linearGradientCenterColorStroke = '#00f';
         this.linearGradientRightColorStroke = '#f00';
         this.linearGradientCenterPointStroke = 0.50;
+
+        this.radialGradientOutsideColorFill = '#ff0';
+        this.radialGradientCenterColorFill = '#0ff';
+        this.radialGradientCenterColorFill = '#0ff';
+
+        this.radialGradientOutsideColorStroke = '#ff0';
+        this.radialGradientCenterColorStroke = '#0ff';
+        this.radialGradientCenterColorStroke = '#0ff';
+
 
         this.assignFormListener();
     }
@@ -123,4 +140,10 @@ export class TextArrangerEnvironment extends GameEnvironment {
     public update_linearGradientRightColorStroke( value ) { this.linearGradientRightColorStroke = value; }
     public update_linearGradientCenterColorStroke( value ) { this.linearGradientCenterColorStroke = value; }
     public update_linearGradientCenterPointStroke( value ) { this.linearGradientCenterPointStroke = value; }
+    public update_radialGradientOutsideColorFill( value ) { this.radialGradientOutsideColorFill = value; }
+    public update_radialGradientCenterColorFill( value ) { this.radialGradientCenterColorFill = value; }
+    public update_radialGradientInsideColorFill( value ) { this.radialGradientInsideColorFill = value; }
+    public update_radialGradientOutsideColorStroke( value ) { this.radialGradientOutsideColorStroke = value; }
+    public update_radialGradientCenterColorStroke( value ) { this.radialGradientCenterColorStroke = value; }
+    public update_radialGradientInsideColorStroke( value ) { this.radialGradientInsideColorStroke = value; }
 }

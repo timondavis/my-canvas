@@ -5,6 +5,7 @@ import { BasicRenderer } from "./renderers/basic-renderer";
 import { GameContext } from "../../../game-engine/game-context";
 import { RenderingData } from "./renderers/rendering-data";
 import { LinearGradientRenderer } from "./renderers/linear-gradient-renderer";
+import { RadialGradientRenderer } from "./renderers/radial-gradient-renderer";
 export class TextArrangerRenderer extends GameRenderer {
 
     draw() {
@@ -73,6 +74,12 @@ export class TextArrangerRenderer extends GameRenderer {
                     break;
                 }
 
+                case( 'radial-gradient' ): {
+
+                    RadialGradientRenderer.fillRender( renderingData );
+                    break;
+                }
+
                 default: break;
             }
         }
@@ -90,7 +97,16 @@ export class TextArrangerRenderer extends GameRenderer {
                 case( 'linear-gradient' ): {
 
                     LinearGradientRenderer.strokeRender( renderingData );
+                    break;
                 }
+
+                case( 'radial-gradient' ): {
+
+                    RadialGradientRenderer.strokeRender( renderingData );
+                    break;
+                }
+
+                default: break;
             }
         }
 

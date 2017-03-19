@@ -6,4 +6,10 @@
            [ngClass]="{'color-form': true}" *ngIf="colorModeFill == 'linear-gradient'"></app-color-form-linear-gradient>
    <app-color-form-linear-gradient-stroke
             [ngClass]="{'color-form': true}" *ngIf="colorModeStroke == 'linear-gradient'"></app-color-form-linear-gradient-stroke>
+   <app-color-form-radial-gradient
+           [ngClass]="{'color-form': true}"
+           *ngIf="colorModeFill == 'radial-gradient'"></app-color-form-radial-gradient>
+   <app-color-form-radial-gradient-stroke
+           [ngClass]="{'color-form': true}"
+           *ngIf="colorModeStroke == 'radial-gradient'"></app-color-form-radial-gradient-stroke>
 </div>

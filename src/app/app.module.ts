@@ -14,6 +14,7 @@ import { ColorFormLinearGradientComponent } from './Exercises/chapter-three-exer
 import { ColorFormRadialGradientComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-radial-gradient/color-form-radial-gradient.component';
 import { ColorFormBasicStrokeComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-basic-stroke/color-form-basic-stroke.component';
 import { ColorFormLinearGradientStrokeComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-linear-gradient-stroke/color-form-linear-gradient-stroke.component';
+import { ColorFormRadialGradientStrokeComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-radial-gradient-stroke/color-form-radial-gradient-stroke.component';
 
 
 
@@ -28,6 +29,8 @@ import { ColorFormLinearGradientStrokeComponent } from './Exercises/chapter-thre
     ColorFormLinearGradientComponent,
     ColorFormBasicStrokeComponent,
     ColorFormLinearGradientStrokeComponent,
+    ColorFormRadialGradientComponent,
+    ColorFormRadialGradientStrokeComponent,
   ],
   imports: [
     BrowserModule,

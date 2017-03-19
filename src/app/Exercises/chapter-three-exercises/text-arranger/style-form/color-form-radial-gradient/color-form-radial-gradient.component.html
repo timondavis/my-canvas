@@ -1,0 +1,18 @@
+<form>
+   <h3>Radial Gradient Fill</h3>
+   <label for="radialGradientOutsideColorFill">Outside Color</label>
+   <input id="radialGradientOutsideColorFill" [style.background]="outsideColorFill" [colorPicker]="outsideColorFill"
+          [value]="outsideColorFill"
+          (colorPickerChange)="updateColorField( 'radialGradientOutsideColorFill', $event );outsideColorFill=$event" />
+
+   <label for="radialGradientCenterColorFill">Center Color</label>
+   <input id="radialGradientCenterColorFill" [style.background]="centerColorFill" [colorPicker]="centerColorFill"
+          [value]="centerColorFill"
+          (colorPickerChange)="updateColorField( 'radialGradientCenterColorFill', $event );centerColorFill=$event" />
+
+   <label for="radialGradientInsideColorFill">Inside Color</label>
+   <input id="radialGradientInsideColorFill" [style.background]="insideColorFill" [colorPicker]="insideColorFill"
+          [value]="insideColorFill"
+          (colorPickerChange)="updateColorField( 'radialGradientInsideColorFill', $event );insideColorFill=$event" />
+
+</form>
