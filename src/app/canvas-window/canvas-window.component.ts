@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { GameContext } from "../game-engine/game-context";
 import { GameInputObserver } from "../game-engine/game-input-observer";
-import { TextArrangerGame } from "../Exercises/chapter-three-exercises/text-arranger/text-arranger-game";
-import { CanvasFormsObserverService } from "../Exercises/chapter-three-exercises/canvas-forms-observer.service";
+import { ImageBasicsGame } from "../Exercises/chapter-four-exercises/image-basics/image-basics-game";
 
 @Component({
   selector: 'app-canvas-window',
@@ -18,7 +17,7 @@ export class CanvasWindowComponent implements OnInit  {
   public static buildGameContext() : GameContext {
 
     let context = new GameContext( new GameInputObserver() );
-    let game = new TextArrangerGame( context );
+    let game = new ImageBasicsGame( context );
 
     context.setGame( game );
 

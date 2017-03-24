@@ -1,4 +1,4 @@
-export abstract class GameEntity {
+export interface GameEntity {
 
-    public abstract update();
+    update();
 }

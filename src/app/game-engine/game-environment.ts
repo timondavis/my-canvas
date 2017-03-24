@@ -1,34 +1,27 @@
 import { GameContext } from "./game-context";
 import { Debugger } from "./debugger";
+import { GameEntityCollection } from "./library/game-entity-collection";
 export abstract class GameEnvironment {
 
-    protected globals = {};
-    protected deltas = {};
-
-    public constructor( protected context : GameContext ) {}
+    private gameEntityCollection : GameEntityCollection;
 
     public abstract init();
 
     public abstract update();
 
+    public constructor( protected context : GameContext ) {
 
-    public getGlobal( key : any ) : any {
-
-        return this.globals[key];
+        this.gameEntityCollection = new GameEntityCollection();
     }
 
-    public getDelta( key : any ) : any {
+    public getEntities() {
 
-        return this.deltas[key];
+        return this.gameEntityCollection;
     }
 
-    public setGlobal( key : any, value : any ) : any {
+    protected getContext() {
 
-        this.globals[key] = value;
+        return this.context;
     }
 
-    public setDelta( key : any, value : any ) : any {
-
-        this.deltas[key] = value;
-    }
 }

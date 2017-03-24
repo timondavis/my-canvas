@@ -12,6 +12,11 @@ export abstract class GameRenderer {
 
     public abstract draw();
 
+    protected getContext() {
+
+        return this.context;
+    }
+
     public setGridSize( size : number ) {
 
         this.gridSize = size;

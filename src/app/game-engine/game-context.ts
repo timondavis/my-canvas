@@ -5,7 +5,6 @@ import { Game } from "./game";
 import { GameController } from "./game-controller";
 import { ComponentMap } from "./library/component-map";
 import { Component } from "@angular/core";
-import { ServiceMap } from "./library/service-map";
 
 export class GameContext {
 
@@ -53,11 +52,6 @@ export class GameContext {
     public getGame() {
 
         return this.game;
-    }
-
-    public getRelatedComponent( name : string ) {
-
-        return this.relatedComponents.getComponent( name );
     }
 
     public setGameEnvironment( gameEnvironment : GameEnvironment ) {
