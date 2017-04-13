@@ -14,7 +14,7 @@ export abstract class GameEnvironment {
         this.gameEntityCollection = new GameEntityCollection();
     }
 
-    public getEntities() {
+    public getGameEntities() {
 
         return this.gameEntityCollection;
     }

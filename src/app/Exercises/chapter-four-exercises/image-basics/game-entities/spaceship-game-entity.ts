@@ -1,23 +1,31 @@
-import { RenderableGameEntity } from "../../../../game-engine/game-entity/renderable-game-entity";
 import { isNull } from "util";
-export class SpaceshipGameEntity extends RenderableGameEntity{
+import { RenderableImageGameEntity } from "../../../../game-engine/game-entity/renderable-image-game-entity";
+
+export class SpaceshipGameEntity extends RenderableImageGameEntity{
 
     private image : any;
 
     public setImage( image : any ) {
         this.image = image;
+
+        let self = this;
+
+        this.image.addEventListener( 'load', function() {
+            self.assetsLoaded = true;
+        });
     }
 
-    update() {
-
+    public getImage() {
+        return this.image;
     }
+
+    update() {}
 
     render( context: CanvasRenderingContext2D ) {
 
         if ( ! isNull( this.image ) ) {
 
-            context.drawImage( this.image, 0, 0 );
-            context.drawImage( this.image, 50, 50 );
+            context.drawImage( this.image, this.getPosition().x, this.getPosition().y, this.width, this.height );
         }
     }
 }

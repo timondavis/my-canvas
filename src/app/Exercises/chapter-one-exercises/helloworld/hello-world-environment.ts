@@ -4,19 +4,6 @@ import { HelloWorldController } from "./hello-world-controller";
 
 export class HelloWorldEnvironment extends GameEnvironment {
 
-    public init() {
-
-        this.globals = {
-            'text' : 'Hello World',
-            'helloWorldImage' : HelloWorldEnvironment.getHTMLbg(),
-            'loopWaitTime' : 20
-        };
-
-        this.deltas = {
-            'alpha' : 0,
-            'fadeIn' : true
-        };
-    }
 
     public update() {
 
