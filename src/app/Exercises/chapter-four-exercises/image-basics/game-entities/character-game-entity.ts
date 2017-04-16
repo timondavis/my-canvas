@@ -18,7 +18,7 @@ export class CharacterGameEntity extends RenderableImageGameEntity {
 
     public update() {
 
-        let currentSpriteState = this.getCurrentSpriteState().getSpriteSheetName();
+        let newSpriteStateName = this.getCurrentSpriteStateName();
 
         Debugger.log( "Is Up depressed: " + this.controller.isUpDepressed() );
 
@@ -26,36 +26,65 @@ export class CharacterGameEntity extends RenderableImageGameEntity {
 
             case( "up" ): {
 
-                currentSpriteState = ( this.controller.isUpDepressed() ) ?
-                    'character-up-walk' : 'character-up-walk';
+                if ( this.controller.isUpDepressed() ) {
+
+                    newSpriteStateName = 'character-up-walk';
+                    this.setPosition( this.getPosition().x, this.getPosition().y - 7 );
+                } else {
+
+                    newSpriteStateName = 'character-up-stand';
+                }
+
                 break;
             }
 
             case( "left" ):  {
 
-                currentSpriteState = ( this.controller.isLeftDepressed() ) ?
-                    'character-left-walk' : 'character-left-walk';
+                if ( this.controller.isLeftDepressed() ) {
+
+                    newSpriteStateName = 'character-left-walk';
+                    this.setPosition( this.getPosition().x - 7, this.getPosition().y );
+                } else {
+
+                    newSpriteStateName = 'character-left-stand';
+                }
+
                 break;
             }
 
             case ( "right" ): {
 
-                currentSpriteState = ( this.controller.isRightDepressed() ) ?
-                    'character-right-walk' : 'character-right-walk';
+                if ( this.controller.isRightDepressed() ) {
+
+                    newSpriteStateName = 'character-right-walk';
+                    this.setPosition( this.getPosition().x + 7, this.getPosition().y );
+                } else {
+
+                    newSpriteStateName = 'character-right-stand';
+                }
                 break;
             }
 
             case ( "down" ):  {
 
-                currentSpriteState = ( this.controller.isDownDepressed() ) ?
-                    'character-down-walk' : 'character-down-walk';
+                if ( this.controller.isDownDepressed() ) {
+
+                   newSpriteStateName = 'character-down-walk';
+                   this.setPosition( this.getPosition().x, this.getPosition().y + 7 );
+                } else {
+
+                    newSpriteStateName = 'character-down-stand';
+                }
                 break;
             }
 
             default: break;
         }
 
-        this.setCurrentSpriteState( currentSpriteState );
+        // Change the current sprite state only if a change is called for
+        if ( newSpriteStateName && this.getSpriteStates().getSpriteState(newSpriteStateName) != this.getCurrentSpriteState() ) {
+            this.setCurrentSpriteState( newSpriteStateName );
+        }
 
         this.advanceCell();
     }

@@ -28,6 +28,13 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
     protected currentSpriteState : SpriteState = null;
 
     /**
+     * The name of the current sprite state
+     * @type {string}
+     */
+    protected currentSpriteStateName : string = '';
+
+
+    /**
      * Store images for use by image renderable game entities
      *
      * @type {Map<string, any>}
@@ -115,6 +122,15 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
     }
 
     /**
+     * Get the key / name of teh current sprite state
+     * @returns {string}
+     */
+    public getCurrentSpriteStateName() : string {
+
+        return this.currentSpriteStateName
+    }
+
+    /**
      * Define the current sprite state for this entity
      *
      * @param spriteStateName : string  The name of the sprite state to assign to this entity
@@ -123,6 +139,7 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
 
         // Set the current sprite state
         this.currentSpriteState = this.spriteStates.getSpriteState( spriteStateName );
+        this.currentSpriteStateName = spriteStateName;
 
         // Set the cell ID to be at the start of the loop.
         this.setCurrentCellID( this.getCurrentSpriteState().getSpriteCellIDMin() );
