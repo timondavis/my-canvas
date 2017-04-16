@@ -41,8 +41,4 @@ export class SpaceshipGameEntity extends RenderableImageGameEntity{
         }
     }
 
-    public render( context: CanvasRenderingContext2D ) {
-
-        this.renderFromSpriteCell( context );
-    }
 }

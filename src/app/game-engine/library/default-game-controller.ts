@@ -1,13 +1,14 @@
 import { EventEmitter } from "@angular/core";
 import { GameController } from "../game-controller";
 import { Debugger } from "../debugger";
+import { GameContext } from "../game-context";
 export class DefaultGameController extends GameController {
 
     public buttonStateChange : EventEmitter<any>;
     private keys : DefaultControllerKeys;
 
-
-    init() {
+    public constructor( context : GameContext ) {
+       super( context );
 
         let self = this;
 
@@ -34,21 +35,27 @@ export class DefaultGameController extends GameController {
 
         this.context.getInputObserver().keyReleased.subscribe( function( event ) {
 
-            let key = event.key.toLowerCase();
+                let key = event.key.toLowerCase();
 
-            switch( key ) {
+                switch( key ) {
 
-                case( 'w' ) : { self.keys.up    = self.processButtonStateChange( 'up', false ); break; }
-                case( 'a' ) : { self.keys.left  = self.processButtonStateChange( 'left', false ); break; }
-                case( 's' ) : { self.keys.down  = self.processButtonStateChange( 'down', false ); break; }
-                case( 'd' ) : { self.keys.right = self.processButtonStateChange( 'right', false ); break; }
+                    case( 'w' ) : { self.keys.up    = self.processButtonStateChange( 'up', false ); break; }
+                    case( 'a' ) : { self.keys.left  = self.processButtonStateChange( 'left', false ); break; }
+                    case( 's' ) : { self.keys.down  = self.processButtonStateChange( 'down', false ); break; }
+                    case( 'd' ) : { self.keys.right = self.processButtonStateChange( 'right', false ); break; }
 
-                default: break;
-            }
+                    default: break;
+                }
 
-        },
+            },
             (err) => Debugger.log( err )
         );
+
+    }
+
+    init() {
+
+
     }
 
     /**

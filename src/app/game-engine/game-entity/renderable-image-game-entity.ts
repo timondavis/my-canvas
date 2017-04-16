@@ -51,9 +51,48 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
         }
     }
 
+
+    /**
+     * Move to the next cell in the current sprite state, or go back to the beginning
+     */
+    public advanceCell() {
+
+        let currentCell = this.getCurrentCellID();
+        currentCell++;
+
+        if ( currentCell > this.getCurrentSpriteState().getSpriteCellIDMax() ) {
+            currentCell = this.getCurrentSpriteState().getSpriteCellIDMin();
+        }
+
+        this.setCurrentCellID( currentCell );
+    }
+
+    public reverseCell() {
+
+        let currentCell = this.getCurrentCellID();
+
+        currentCell--;
+
+        if ( currentCell < this.getCurrentSpriteState().getSpriteCellIDMin() ) {
+            currentCell = this.getCurrentSpriteState().getSpriteCellIDMax();
+        }
+
+        this.setCurrentCellID( currentCell );
+    }
+
     public getSpriteStates() : SpriteStateCollection {
 
         return this.spriteStates;
+    }
+
+    /**
+     * Default Render Method
+     *
+     * @param context
+     */
+    public render( context: CanvasRenderingContext2D ) {
+
+        this.renderFromSpriteCell( context );
     }
 
     /**
@@ -166,17 +205,52 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
         let cellDimensions = this.getCellDimensions( spriteSheetName );
         let spriteSheetSize = this.getSpriteSheetGridDimensions( spriteSheetName );
 
-        // Colculate the row and the column.  Left shift both values by 1
+        // Calculate row
         let row = Math.floor( cellID / spriteSheetSize.y );
-        let column = ( spriteSheetSize.x % cellID) - 1 ;
 
-        if ( column < 0 ) { column = spriteSheetSize.x }
+        // Calculate Column
+        let imageWidth = ( cellDimensions.x * spriteSheetSize.x );
+        let columnpct = ( cellDimensions.x / imageWidth );
+        let column = RenderableImageGameEntity.convertCellIDToColumn( spriteSheetName, cellID );
 
         return new Point(
-            column * cellDimensions.x,
-            row    * cellDimensions.y
+            columnpct * imageWidth * column, // column
+            RenderableImageGameEntity.convertCellIDToRow( spriteSheetName, cellID ) * cellDimensions.y
         );
     }
+
+    /**
+     * Convert A Cell ID to a column number (relative to the columns on the associated sprite sheet
+     *
+     * @param spriteSheetName
+     * @param cellID
+     * @returns {number}
+     */
+    public static convertCellIDToColumn( spriteSheetName : string, cellID : number ) {
+
+        let cellsWide = this.getSpriteSheetGridDimensions( spriteSheetName ).x;
+
+        while ( ( cellID - cellsWide ) >= 0 ) {
+
+           cellID -=  cellsWide;
+        }
+
+        return cellID;
+    }
+
+    /**
+     * Convert a Cell ID to a row (relative to the rows on the associated sprite sheet
+     *
+     * @param spriteSheetName
+     * @param cellID
+     * @returns {number}
+     */
+    public static convertCellIDToRow( spriteSheetName : string, cellID : number ) {
+        let cellsHigh = this.getSpriteSheetGridDimensions( spriteSheetName ).y;
+
+        return Math.floor( cellID / cellsHigh );
+    }
+
 
     /**
      * Use this method to determine the relative position, in pixels ( base 0 0 ) of the center of the target cell
@@ -270,31 +344,4 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
         this.spriteSheetGridDimensions.set( name, dimensions );
     }
 
-    /**
-     * Move to the next cell in the current sprite state, or go back to the beginning
-     */
-    private advanceCell() {
-
-        let currentCell = this.getCurrentCellID();
-        currentCell++;
-
-        if ( currentCell >= this.getCurrentSpriteState().getSpriteCellIDMax() ) {
-           currentCell = this.getCurrentSpriteState().getSpriteCellIDMin();
-        }
-
-        this.setCurrentCellID( currentCell );
-    }
-
-    private regressCell() {
-
-        let currentCell = this.getCurrentCellID();
-
-        currentCell--;
-
-        if ( currentCell < this.getCurrentSpriteState().getSpriteCellIDMin() ) {
-            currentCell = this.getCurrentSpriteState().getSpriteCellIDMax();
-        }
-
-        this.setCurrentCellID( currentCell );
-    }
 }

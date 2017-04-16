@@ -1,4 +1,5 @@
 import { GameRenderer } from "../../../game-engine/game-renderer";
+import { RenderableGameEntity } from "../../../game-engine/game-entity/renderable-game-entity";
 export class ImageBasicsRenderer extends GameRenderer {
 
     draw() {
@@ -7,8 +8,16 @@ export class ImageBasicsRenderer extends GameRenderer {
 
         let context = this.getContext().getRenderingContext();
 
-        let spaceship = this.getContext().getGameEnvironment().getGameEntities().getRenderableGameEntity( 'spaceship' );
+        let env = this.getContext().getGameEnvironment();
 
-        spaceship.render( context );
+        let entities = env.getGameEntities().getCollection();
+
+        entities.forEach( function( value ) {
+
+            if ( value instanceof RenderableGameEntity ) {
+
+                value.render( context );
+            }
+        });
     }
 }
