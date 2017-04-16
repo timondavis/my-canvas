@@ -1,14 +1,31 @@
 import { RenderableGameEntity } from "./renderable-game-entity";
 import { Point } from "../library/point";
+import { SpriteStateCollection } from "../library/sprite/sprite-state-collection";
+import { SpriteState } from "../library/sprite/sprite-state";
+import { isNull } from "util";
 
 export abstract class RenderableImageGameEntity extends RenderableGameEntity {
+
+    /**
+     * Define the sprite states available to this entity
+     *
+     * @type {SpriteStateCollection}
+     */
+    private spriteStates : SpriteStateCollection = new SpriteStateCollection();
+
+    /**
+     * The ID of the current cell in the spritesheet
+     *
+     * @type {number}
+     */
+    private currentCellID : number = 0;
 
     /**
      * The name of the current sprite sheet being used for an instance of this class.
      *
      * @type {string}
      */
-    protected currentSpriteSheet = "";
+    protected currentSpriteState : SpriteState = null;
 
     /**
      * Store images for use by image renderable game entities
@@ -22,34 +39,71 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
      *
      * @type {Map<string, Point>}
      */
-    private static spriteSheetSizing : Map<string, Point> = new Map<string, Point>();
+    private static spriteSheetGridDimensions : Map<string, Point> = new Map<string, Point>();
 
     /**
-     * Define the current sprite sheet being used on this instance by name
-     *
-     * @param spriteSheetName : string
+     * By default, update will always advance to the next frame on the current state's cell path upon update tick.
      */
-    public setCurrentSpriteSheetName( spriteSheetName : string ) : void {
+    public update() {
 
-        this.currentSpriteSheet = spriteSheetName;
+        if ( ! isNull( this.getCurrentSpriteState() ) ) {
+            this.advanceCell();
+        }
+    }
+
+    public getSpriteStates() : SpriteStateCollection {
+
+        return this.spriteStates;
     }
 
     /**
-     * Get the current sprite sheet being used on this instance by name
+     * Get the current cell ID being rendered
+     * @returns {number}
+     */
+    public getCurrentCellID() : number {
+
+        return this.currentCellID;
+    }
+
+    /**
+     * Get the current sprite state for this enetity
      *
      * @returns {string}
      */
-    public getCurrentSpriteSheetName() : string  {
+    public getCurrentSpriteState() : SpriteState  {
 
-        return this.currentSpriteSheet;
+        return this.currentSpriteState;
     }
 
-    public renderFromSpriteCell( cellID : number, context : CanvasRenderingContext2D ) {
+    /**
+     * Define the current sprite state for this entity
+     *
+     * @param spriteStateName : string  The name of the sprite state to assign to this entity
+     */
+    public setCurrentSpriteState( spriteStateName : string ) : void {
 
-        let spriteSheetName = this.getCurrentSpriteSheetName();
+        // Set the current sprite state
+        this.currentSpriteState = this.spriteStates.getSpriteState( spriteStateName );
+
+        // Set the cell ID to be at the start of the loop.
+        this.setCurrentCellID( this.getCurrentSpriteState().getSpriteCellIDMin() );
+    }
+
+    /**
+     * Renders a cell from the sprite sheet.  Uses properties to deterimine rendering size and locaiton
+     *
+     * @param cellID
+     * @param context
+     */
+    public renderFromSpriteCell( context : CanvasRenderingContext2D ) {
+
+        let spriteState = this.getCurrentSpriteState();
+        let spriteSheetName = spriteState.getSpriteSheetName();
+
+        let cellID = this.getCurrentCellID();
 
         let spriteSheet = RenderableImageGameEntity.getSpriteSheetAsset( spriteSheetName );
-        let spriteSheetSize = RenderableImageGameEntity.getSpriteSheetSizing( spriteSheetName );
+        let spriteSheetSize = RenderableImageGameEntity.getSpriteSheetGridDimensions( spriteSheetName );
 
         // get # of cells on grid
         let cellRangeMax = spriteSheetSize.x * spriteSheetSize.y;
@@ -74,6 +128,15 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
         );
     }
 
+    /**
+     * Set the current cell ID to render on the current sprite state
+     *
+     * @param id
+     */
+    public setCurrentCellID( id : number ) {
+
+        this.currentCellID = id;
+    }
 
     /**
      * Add an image to the image library for use by all game entities (you can load spriteSheets here, for example)
@@ -85,7 +148,7 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
                                   numberOfVerticalCells : number = 1 ) {
 
         this.setSpriteSheetAsset( name, image );
-        this.setSpriteSheetSizing( name, new Point( numberOfHorizontalCells, numberOfVerticalCells ) );
+        this.setSpriteSheetGridDimensions( name, new Point( numberOfHorizontalCells, numberOfVerticalCells ) );
     }
 
     /**
@@ -101,7 +164,7 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
 
         // Actual width / height, in pixels, of the cells
         let cellDimensions = this.getCellDimensions( spriteSheetName );
-        let spriteSheetSize = this.getSpriteSheetSizing( spriteSheetName );
+        let spriteSheetSize = this.getSpriteSheetGridDimensions( spriteSheetName );
 
         // Colculate the row and the column.  Left shift both values by 1
         let row = Math.floor( cellID / spriteSheetSize.y );
@@ -145,13 +208,13 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
     public static getCellDimensions( spriteSheetName : string ) : Point {
 
         // # of cells wide and high on the sprite sheet
-        let sheetGridCellsWide = this.getSpriteSheetSizing( spriteSheetName ).x;
-        let sheetGridCellsHigh = this.getSpriteSheetSizing( spriteSheetName ).y;
+        let sheetGridCellsWide = this.getSpriteSheetGridDimensions( spriteSheetName ).x;
+        let sheetGridCellsHigh = this.getSpriteSheetGridDimensions( spriteSheetName ).y;
 
 
         // Get pixeld dimensions for sheet width and height
-        let sheetWidth = this.getSpriteSheetAsset( spriteSheetName ).getNaturalWidth;
-        let sheetHeight = this.getSpriteSheetAsset( spriteSheetName ).getNaturalHeight;
+        let sheetWidth = this.getSpriteSheetAsset( spriteSheetName ).width;
+        let sheetHeight = this.getSpriteSheetAsset( spriteSheetName ).height;
 
         return new Point (
             sheetWidth / sheetGridCellsWide,
@@ -189,9 +252,9 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
      *
      * @returns {Point}  x = cells wide, y = cells high
      */
-    protected static getSpriteSheetSizing( name : string ) : Point {
+    protected static getSpriteSheetGridDimensions( name : string ) : Point {
 
-        let sizing = this.spriteSheetSizing.get( name );
+        let sizing = this.spriteSheetGridDimensions.get( name );
         return ( sizing ) ? sizing : new Point( 1, 1 );
     }
 
@@ -202,8 +265,36 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
      * @param name  The name of the spriteSheet you're describing
      * @param dimensions Point  x = cells wide, y = cells high
      */
-    protected static setSpriteSheetSizing( name : string, dimensions : Point ) : void {
+    protected static setSpriteSheetGridDimensions( name : string, dimensions : Point ) : void {
 
-        this.spriteSheetSizing.set( name, dimensions );
+        this.spriteSheetGridDimensions.set( name, dimensions );
+    }
+
+    /**
+     * Move to the next cell in the current sprite state, or go back to the beginning
+     */
+    private advanceCell() {
+
+        let currentCell = this.getCurrentCellID();
+        currentCell++;
+
+        if ( currentCell >= this.getCurrentSpriteState().getSpriteCellIDMax() ) {
+           currentCell = this.getCurrentSpriteState().getSpriteCellIDMin();
+        }
+
+        this.setCurrentCellID( currentCell );
+    }
+
+    private regressCell() {
+
+        let currentCell = this.getCurrentCellID();
+
+        currentCell--;
+
+        if ( currentCell < this.getCurrentSpriteState().getSpriteCellIDMin() ) {
+            currentCell = this.getCurrentSpriteState().getSpriteCellIDMax();
+        }
+
+        this.setCurrentCellID( currentCell );
     }
 }

@@ -17,7 +17,10 @@ export class ImageBasicsGame extends Game {
         // The LOOP!
         setInterval( function(){
 
+            SELF.getContext().getGameEnvironment().update();
+
             if ( SELF.getContext().getGameEnvironment().getGameEntities().getRenderableGameEntity( 'spaceship' ).assetsLoaded ) {
+
                 SELF.getContext().getGameRenderer().draw();
             }
         }, 20);

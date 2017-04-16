@@ -17,6 +17,15 @@ export class GameEntityCollection {
     }
 
     /**
+     * Get the raw entity collection for use with traversal mechanisms
+     * @returns {Map<String, GameEntity>}
+     */
+    public  getCollection() : Map<String, GameEntity>{
+
+        return this.entities;
+    }
+
+    /**
      * Retrieve a Game Entity
      *
      * @param name  The name of the entity

@@ -1,31 +1,48 @@
 import { isNull } from "util";
 import { RenderableImageGameEntity } from "../../../../game-engine/game-entity/renderable-image-game-entity";
+import { SpriteState } from "../../../../game-engine/library/sprite/sprite-state";
 
 export class SpaceshipGameEntity extends RenderableImageGameEntity{
 
-    private image : any;
+    public static initialized : boolean = false;
 
-    public setImage( image : any ) {
-        this.image = image;
+    public constructor() {
 
-        let self = this;
-
-        this.image.addEventListener( 'load', function() {
-            self.assetsLoaded = true;
-        });
+        super();
+        this.init();
     }
 
-    public getImage() {
-        return this.image;
-    }
+    public init() {
 
-    update() {}
+        let SELF = this;
 
-    render( context: CanvasRenderingContext2D ) {
+        if ( ! SpaceshipGameEntity.initialized ) {
 
-        if ( ! isNull( this.image ) ) {
+            // Create spritesheets
+            let spaceshipImage = new Image();
+            spaceshipImage.src = '/assets/ship1.png';
 
-            context.drawImage( this.image, this.getPosition().x, this.getPosition().y, this.width, this.height );
+            // Add load listener to the spritesheet
+            spaceshipImage.addEventListener( 'load', function( event ) {
+
+                SELF.assetsLoaded = true;
+            });
+
+            RenderableImageGameEntity.setSpriteSheetAsset( 'spaceship', spaceshipImage );
+
+            // Create sprite states
+            let stillState: SpriteState = new SpriteState( 'spaceship', 0, 0 );
+
+            // Add the sprite state and set to current
+            this.getSpriteStates().setSpriteState( 'still', stillState );
+            this.setCurrentSpriteState( 'still' );
+
+            SpaceshipGameEntity.initialized = true;
         }
+    }
+
+    public render( context: CanvasRenderingContext2D ) {
+
+        this.renderFromSpriteCell( context );
     }
 }

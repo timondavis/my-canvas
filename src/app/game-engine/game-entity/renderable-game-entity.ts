@@ -12,6 +12,11 @@ export abstract class RenderableGameEntity implements GameEntity {
     public abstract render( context : CanvasRenderingContext2D );
 
     /**
+     * Default init routine
+     */
+    public init() {}
+
+    /**
      * Set the placement and size of the entity on the grid.
      *
      * @param xPos    number
