@@ -20,6 +20,8 @@ export class CharacterGameEntity extends RenderableImageGameEntity {
 
         let newSpriteStateName = this.getCurrentSpriteStateName();
 
+        this.setRotation( this.getRotation() + 7 );
+
         Debugger.log( "Is Up depressed: " + this.controller.isUpDepressed() );
 
         switch ( this.direction ) {

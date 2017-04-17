@@ -99,7 +99,20 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
      */
     public render( context: CanvasRenderingContext2D ) {
 
+        context.save();
+        context.setTransform( 1, 0, 0, 1, 0, 0 );
+
+        context.translate( this.getPosition().x, this.getPosition().y );
+
+        context.rotate( this.rotation * Math.PI / 180 );
+
+        context.fillStyle = '#000';
+        context.strokeStyle = '#000';
+        context.fillRect( -2.5, -2.5, 5, 5 );
+
         this.renderFromSpriteCell( context );
+
+        context.restore();
     }
 
     /**
@@ -148,7 +161,6 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
     /**
      * Renders a cell from the sprite sheet.  Uses properties to deterimine rendering size and locaiton
      *
-     * @param cellID
      * @param context
      */
     public renderFromSpriteCell( context : CanvasRenderingContext2D ) {
@@ -175,12 +187,16 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
         let sourceLocation = RenderableImageGameEntity.getSourceImageCellTopLeft( spriteSheetName, cellID );
         let cellDimensions = RenderableImageGameEntity.getCellDimensions( spriteSheetName );
 
+        // Get the width and height ratios between the source and the destination
+        let widthRatio = this.getWidth() / cellDimensions.x;
+        let heightRatio = this.getHeight() / cellDimensions.y;
+
         // Draw out the image.
         context.drawImage( spriteSheet,
             sourceLocation.x, sourceLocation.y,
             cellDimensions.x, cellDimensions.y,
-            this.position.x, this.position.y,
-            this.width, this.height
+            ( -1 * cellDimensions.x  * widthRatio ) * 0.5, ( -1 * cellDimensions.y * heightRatio ) * 0.5,
+            this.getWidth(), this.getHeight()
         );
     }
 
@@ -269,26 +285,7 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
     }
 
 
-    /**
-     * Use this method to determine the relative position, in pixels ( base 0 0 ) of the center of the target cell
-     * @param spriteSheetName
-     * @param cellID
-     * @returns {Point}
-     */
-    public static getSourceImageCellCenter( spriteSheetName : string, cellID : number ) : Point {
 
-        // Get initial starting point
-        let startingPoint = this.getSourceImageCellTopLeft( spriteSheetName, cellID );
-
-        // Get the dimensions of the cell itself
-        let cellDimensions = this.getCellDimensions( spriteSheetName );
-
-        // Add width and height from cell dimensions to the initial starting point.  Presto!
-        return new Point(
-            startingPoint.x + cellDimensions.x,
-            startingPoint.y + cellDimensions.y
-        );
-    }
 
 
     /**

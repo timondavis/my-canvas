@@ -7,6 +7,7 @@ export abstract class RenderableGameEntity implements GameEntity {
     protected position : Point = new Point();
     protected width : number = null;
     protected height : number = null;
+    protected rotation : number = 0;
 
     public abstract update();
     public abstract render( context : CanvasRenderingContext2D );
@@ -65,6 +66,16 @@ export abstract class RenderableGameEntity implements GameEntity {
     }
 
     /**
+     * Set the rotation of the entity on the grid (degrees not radians)
+     *
+     * @param deg : number
+     */
+    public setRotation( deg : number ) {
+
+        this.rotation = deg;
+    }
+
+    /**
      * Set the width of the entity as rendered
      *
      * @param width : number
@@ -112,5 +123,15 @@ export abstract class RenderableGameEntity implements GameEntity {
     public getHeight() {
 
         return this.height;
+    }
+
+    /**
+     * Get the rotation of the object (degrees, not radians)
+     *
+     * @returns {number}
+     */
+    public getRotation() {
+
+        return this.rotation;
     }
 }
