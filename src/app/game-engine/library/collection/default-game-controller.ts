@@ -1,7 +1,7 @@
 import { EventEmitter } from "@angular/core";
-import { GameController } from "../game-controller";
+import { Game } from "../../game";
+import { GameController } from "../../game-controller";
 import { Debugger } from "../debugger";
-import { Game } from "../game";
 export class DefaultGameController extends GameController {
 
     public buttonStateChange : EventEmitter<any>;

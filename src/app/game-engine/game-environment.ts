@@ -1,5 +1,5 @@
-import { GameEntityCollection } from "./library/game-entity-collection";
 import { Game } from "./game";
+import { GameEntityCollection } from "./library/collection/game-entity-collection";
 export abstract class GameEnvironment {
 
     private gameEntityCollection : GameEntityCollection;

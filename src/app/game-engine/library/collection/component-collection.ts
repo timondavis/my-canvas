@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-export class ComponentMap {
+export class ComponentCollection {
 
     private components : Map <string, Component>;
 

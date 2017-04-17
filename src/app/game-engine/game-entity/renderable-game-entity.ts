@@ -1,5 +1,5 @@
 import { GameEntity } from "./game-entity";
-import { Point } from "../library/point";
+import { Point } from "../library/graph/point";
 export abstract class RenderableGameEntity implements GameEntity {
 
     public assetsLoaded : boolean = false;

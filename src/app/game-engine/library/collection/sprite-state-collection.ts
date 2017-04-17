@@ -1,5 +1,5 @@
-import { SpriteState } from "./sprite-state";
 import { isNull } from "util";
+import { SpriteState } from "../sprite/sprite-state";
 export class SpriteStateCollection {
 
     /**

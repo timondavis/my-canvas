@@ -1,9 +1,9 @@
-import { ComponentMap } from "./library/component-map";
 import { GameInputObserver } from "./game-input-observer";
 import { GameController } from "./game-controller";
 import { GameEnvironment } from "./game-environment";
 import { GameRenderer } from "./game-renderer";
 import { Component } from "@angular/core";
+import { ComponentCollection } from "./library/collection/component-collection";
 export abstract class Game {
 
     public isGameLoaded : boolean = false;
@@ -12,11 +12,11 @@ export abstract class Game {
     private gameEnvironment : GameEnvironment;
     private gameRenderer : GameRenderer;
     private canvasElement : Element;
-    private relatedComponents : ComponentMap;
+    private relatedComponents : ComponentCollection;
 
     public constructor( private inputObserver : GameInputObserver ) {
 
-        this.relatedComponents = new ComponentMap();
+        this.relatedComponents = new ComponentCollection();
     }
 
     public abstract loadGame();

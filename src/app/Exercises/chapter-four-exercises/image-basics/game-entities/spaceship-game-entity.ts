@@ -1,4 +1,3 @@
-import { isNull } from "util";
 import { RenderableImageGameEntity } from "../../../../game-engine/game-entity/renderable-image-game-entity";
 import { SpriteState } from "../../../../game-engine/library/sprite/sprite-state";
 

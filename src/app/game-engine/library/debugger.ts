@@ -1,4 +1,4 @@
-import { gameEngineConfiguration } from "../../environments/environment";
+import { gameEngineConfiguration } from "../../../environments/environment";
 export class Debugger {
 
     /**

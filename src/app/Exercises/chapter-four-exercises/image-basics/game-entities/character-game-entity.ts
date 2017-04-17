@@ -1,8 +1,8 @@
 import { RenderableImageGameEntity } from "../../../../game-engine/game-entity/renderable-image-game-entity";
 import { SpriteState } from "../../../../game-engine/library/sprite/sprite-state";
-import { DefaultGameController } from "../../../../game-engine/library/default-game-controller";
-import { Debugger } from "../../../../game-engine/debugger";
 import { Game } from "../../../../game-engine/game";
+import { DefaultGameController } from "../../../../game-engine/library/collection/default-game-controller";
+import { Debugger } from "../../../../game-engine/library/debugger";
 export class CharacterGameEntity extends RenderableImageGameEntity {
 
     public initialized = false;

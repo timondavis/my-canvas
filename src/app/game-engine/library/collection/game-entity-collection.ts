@@ -1,6 +1,6 @@
-import { RenderableGameEntity } from "../game-entity/renderable-game-entity";
-import { GameEntity } from "../game-entity/game-entity";
 import { isUndefined } from "util";
+import { GameEntity } from "../../game-entity/game-entity";
+import { RenderableGameEntity } from "../../game-entity/renderable-game-entity";
 export class GameEntityCollection {
 
     /**
@@ -20,7 +20,7 @@ export class GameEntityCollection {
      * Get the raw entity collection for use with traversal mechanisms
      * @returns {Map<String, GameEntity>}
      */
-    public  getCollection() : Map<String, GameEntity>{
+    public getCollection() : Map<String, GameEntity>{
 
         return this.entities;
     }

@@ -1,9 +1,6 @@
 import { GameEnvironment } from "../../../game-engine/game-environment";
-import { SpaceshipGameEntity } from "./game-entities/spaceship-game-entity";
-import { forEach } from "@angular/router/src/utils/collection";
-import { RenderableImageGameEntity } from "../../../game-engine/game-entity/renderable-image-game-entity";
 import { CharacterGameEntity } from "./game-entities/character-game-entity";
-import { DefaultGameController } from "../../../game-engine/library/default-game-controller";
+import { DefaultGameController } from "../../../game-engine/library/collection/default-game-controller";
 export class ImageBasicsEnvironment extends GameEnvironment {
 
     private expand = true;
