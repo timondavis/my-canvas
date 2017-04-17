@@ -10,9 +10,7 @@ export class ImageBasicsRenderer extends GameRenderer {
 
         let env = this.getGame().getGameEnvironment();
 
-        let entities = env.getGameEntities().getCollection();
-
-        entities.forEach( function( value ) {
+        env.getGameEntities().forEach( function( value ) {
 
             if ( value instanceof RenderableGameEntity ) {
 

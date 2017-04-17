@@ -77,6 +77,5 @@ export abstract class Game {
 
     public registerRelatedComponent( name : string, component : Component ) {
 
-        this.relatedComponents.updateComponent( name, component );
     }
 }

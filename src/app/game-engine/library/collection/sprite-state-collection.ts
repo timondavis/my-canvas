@@ -16,11 +16,12 @@ export class SpriteStateCollection {
     }
 
     /**
-     * Get the raw colleciton (map) of the sprite states
+     * Execute a foreach loop, iterating over each sprite state in the collection
+     * @param func : any callbackfn( value : SpriteState, key : string ) (
      */
-    public getCollection() {
+    public forEach( func ) {
 
-        return this.spriteStates;
+        this.spriteStates.forEach( func );
     }
 
     /**

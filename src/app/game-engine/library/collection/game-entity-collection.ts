@@ -17,12 +17,12 @@ export class GameEntityCollection {
     }
 
     /**
-     * Get the raw entity collection for use with traversal mechanisms
-     * @returns {Map<String, GameEntity>}
+     * Execute a foreach loop, iterating over each game entity in the collection
+     * @param func : any callbackfn( value : GameEntity, key : string ) (
      */
-    public getCollection() : Map<String, GameEntity>{
+    public forEach( func ) {
 
-        return this.entities;
+        this.entities.forEach( func );
     }
 
     /**

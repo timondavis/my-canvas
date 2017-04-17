@@ -49,7 +49,7 @@ export class ImageBasicsEnvironment extends GameEnvironment {
             spaceship.setHeight ( 50 * this.size );
         */
 
-        this.getGameEntities().getCollection().forEach( function ( value, key ) {
+        this.getGameEntities().forEach( function ( value ) {
 
             value.update();
         });

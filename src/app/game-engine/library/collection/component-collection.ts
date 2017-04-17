@@ -9,21 +9,12 @@ export class ComponentCollection {
     }
 
     /**
-     * Add a component to the component collection
-     *
-     * @param key
-     * @param component
+     * Execute a foreach loop, iterating over each component in the collection
+     * @param func : any callbackfn( value : Component, key : string ) (
      */
-    public addComponent( key : string, component : Component ) : void {
+    public forEach( func ) {
 
-        if ( ! this.components.get( key ) ) {
-
-            this.components.set( key, component );
-
-        } else {
-
-            throw ( "Duplicate key " + key + " error when adding component to ComponentMap" );
-        }
+        this.components.forEach( func );
     }
 
     /**
@@ -32,7 +23,7 @@ export class ComponentCollection {
      * @param key
      * @param component
      */
-    public updateComponent( key : string, component : Component ) : void {
+    public setComponent( key : string, component : Component ) : void {
 
         this.components.set( key, component );
     }
