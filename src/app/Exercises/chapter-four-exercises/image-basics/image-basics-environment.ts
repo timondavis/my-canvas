@@ -1,6 +1,6 @@
-import { GameEnvironment } from "../../../game-engine/game-environment";
 import { CharacterGameEntity } from "./game-entities/character-game-entity";
-import { DefaultGameController } from "../../../game-engine/library/collection/default-game-controller";
+import { GameEnvironment } from "../../../game-engine/game/game-environment/game-environment";
+import { DefaultGameController } from "../../../game-engine/game/game-controller/default-game-controller";
 export class ImageBasicsEnvironment extends GameEnvironment {
 
     private expand = true;

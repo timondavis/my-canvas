@@ -6,7 +6,6 @@ import { ColorPickerModule } from "angular2-color-picker";
 
 import { AppComponent } from './app.component';
 import { CanvasWindowComponent } from './canvas-window/canvas-window.component';
-import { GameCanvasComponent } from './game-engine/game-canvas/game-canvas.component';
 import { TextArrangerFormComponent } from './Exercises/chapter-three-exercises/text-arranger/text-arranger-form/text-arranger-form.component';
 import { StyleFormComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/style-form.component';
 import { ColorFormBasicComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-basic/color-form-basic.component';
@@ -15,6 +14,7 @@ import { ColorFormRadialGradientComponent } from './Exercises/chapter-three-exer
 import { ColorFormBasicStrokeComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-basic-stroke/color-form-basic-stroke.component';
 import { ColorFormLinearGradientStrokeComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-linear-gradient-stroke/color-form-linear-gradient-stroke.component';
 import { ColorFormRadialGradientStrokeComponent } from './Exercises/chapter-three-exercises/text-arranger/style-form/color-form-radial-gradient-stroke/color-form-radial-gradient-stroke.component';
+import { GameCanvasComponent } from "./game-engine/game/game-canvas/game-canvas.component";
 
 
 

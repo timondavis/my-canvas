@@ -1,6 +1,6 @@
-import { Game } from "../../../game-engine/game";
 import { ImageBasicsRenderer } from "./image-basics-renderer";
 import { ImageBasicsEnvironment } from "./image-basics-environment";
+import { Game } from "../../../game-engine/game/game";
 export class ImageBasicsGame extends Game {
 
     loadGame() {

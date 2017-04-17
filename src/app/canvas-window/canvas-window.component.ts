@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { GameInputObserver } from "../game-engine/game-input-observer";
 import { ImageBasicsGame } from "../Exercises/chapter-four-exercises/image-basics/image-basics-game";
-import { Game } from "../game-engine/game";
+import { Game } from "../game-engine/game/game";
+import { GameInputObserver } from "../game-engine/game/game-observer/game-input-observer";
 
 @Component({
   selector: 'app-canvas-window',

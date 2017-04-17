@@ -1,8 +1,8 @@
-import { RenderableGameEntity } from "./renderable-game-entity";
-import { SpriteState } from "../library/sprite/sprite-state";
 import { isNull } from "util";
-import { SpriteStateCollection } from "../library/collection/sprite-state-collection";
-import { Point } from "../library/graph/point";
+import { RenderableGameEntity } from "../renderable-game-entity";
+import { SpriteStateCollection } from "./collection/sprite-state-collection";
+import { SpriteState } from "./sprite-state";
+import { Point } from "../../../library/graph/point";
 
 export abstract class RenderableImageGameEntity extends RenderableGameEntity {
 

@@ -1,5 +1,5 @@
-import { Game } from "./game";
 
+import { Game } from "../game";
 export abstract class GameRenderer {
 
     private gridColor           : string = "black";

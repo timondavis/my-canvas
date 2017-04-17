@@ -1,5 +1,5 @@
-import { GameRenderer } from "../../../game-engine/game-renderer";
-import { RenderableGameEntity } from "../../../game-engine/game-entity/renderable-game-entity";
+import { GameRenderer } from "../../../game-engine/game/game-renderer/game-renderer";
+import { RenderableGameEntity } from "../../../game-engine/game/game-entity/renderable-game-entity";
 export class ImageBasicsRenderer extends GameRenderer {
 
     draw() {

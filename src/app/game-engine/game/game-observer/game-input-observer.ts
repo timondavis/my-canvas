@@ -1,6 +1,6 @@
 import { Output, EventEmitter } from "@angular/core";
-import { gameEngineConfiguration } from "../../environments/environment";
-import { Debugger } from "./library/debugger";
+import { gameEngineConfiguration } from "../../../../environments/environment";
+import { Debugger } from "../../library/debugger";
 
 export class GameInputObserver {
 

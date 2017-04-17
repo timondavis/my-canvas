@@ -1,6 +1,6 @@
-import { RenderableImageGameEntity } from "../../../../game-engine/game-entity/renderable-image-game-entity";
-import { SpriteState } from "../../../../game-engine/library/sprite/sprite-state";
 
+import { RenderableImageGameEntity } from "../../../../game-engine/game/game-entity/sprite/renderable-image-game-entity";
+import { SpriteState } from "../../../../game-engine/game/game-entity/sprite/sprite-state";
 export class SpaceshipGameEntity extends RenderableImageGameEntity{
 
     public static initialized : boolean = false;

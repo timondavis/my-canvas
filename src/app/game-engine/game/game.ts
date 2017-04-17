@@ -1,9 +1,9 @@
-import { GameInputObserver } from "./game-input-observer";
-import { GameController } from "./game-controller";
-import { GameEnvironment } from "./game-environment";
-import { GameRenderer } from "./game-renderer";
 import { Component } from "@angular/core";
-import { ComponentCollection } from "./library/collection/component-collection";
+import { GameController } from "./game-controller/game-controller";
+import { GameEnvironment } from "./game-environment/game-environment";
+import { GameRenderer } from "./game-renderer/game-renderer";
+import { ComponentCollection } from "../library/collection/component-collection";
+import { GameInputObserver } from "./game-observer/game-input-observer";
 export abstract class Game {
 
     public isGameLoaded : boolean = false;
