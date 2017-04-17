@@ -1,6 +1,5 @@
-import { GameContext } from "./game-context";
-import { Debugger } from "./debugger";
 import { GameEntityCollection } from "./library/game-entity-collection";
+import { Game } from "./game";
 export abstract class GameEnvironment {
 
     private gameEntityCollection : GameEntityCollection;
@@ -9,7 +8,7 @@ export abstract class GameEnvironment {
 
     public abstract update();
 
-    public constructor( protected context : GameContext ) {
+    public constructor( protected game : Game ) {
 
         this.gameEntityCollection = new GameEntityCollection();
     }
@@ -19,9 +18,9 @@ export abstract class GameEnvironment {
         return this.gameEntityCollection;
     }
 
-    protected getContext() {
+    protected getGame() {
 
-        return this.context;
+        return this.game;
     }
 
 }

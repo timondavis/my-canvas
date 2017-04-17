@@ -1,26 +1,27 @@
 import { RenderableImageGameEntity } from "../../../../game-engine/game-entity/renderable-image-game-entity";
 import { SpriteState } from "../../../../game-engine/library/sprite/sprite-state";
 import { DefaultGameController } from "../../../../game-engine/library/default-game-controller";
-import { GameContext } from "../../../../game-engine/game-context";
 import { Debugger } from "../../../../game-engine/debugger";
+import { Game } from "../../../../game-engine/game";
 export class CharacterGameEntity extends RenderableImageGameEntity {
 
     public initialized = false;
-    private context : GameContext;
+    private game : Game;
     private controller : DefaultGameController;
     public direction = "up";
 
-    public constructor ( context : GameContext ) {
+    public constructor ( game : Game ) {
 
         super();
-        this.context = context;
+        this.game = game;
     }
 
     public update() {
 
         let newSpriteStateName = this.getCurrentSpriteStateName();
 
-        this.setRotation( this.getRotation() + 7 );
+        /** Test Rotation **/
+        /*this.setRotation( this.getRotation() + 7 ); */
 
         Debugger.log( "Is Up depressed: " + this.controller.isUpDepressed() );
 
@@ -97,7 +98,7 @@ export class CharacterGameEntity extends RenderableImageGameEntity {
 
         if ( ! this.initialized ) {
 
-            this.controller = new DefaultGameController( this.getContext() );
+            this.controller = new DefaultGameController( this.getGame() );
 
             // Register The Spritesheet
             let characterSheet = new Image();
@@ -153,7 +154,7 @@ export class CharacterGameEntity extends RenderableImageGameEntity {
             // Set current direction to up.
             this.setCurrentSpriteState( 'character-up-walk' );
 
-            this.getContext().getInputObserver().keyPressed.subscribe(
+            this.getGame().getInputObserver().keyPressed.subscribe(
 
                 ( event ) => {
                     if ( SELF.controller.isUpDepressed() ) {
@@ -185,9 +186,9 @@ export class CharacterGameEntity extends RenderableImageGameEntity {
 
     }
 
-    private getContext() : GameContext {
+    private getGame() : Game {
 
-        return this.context;
+        return this.game;
     }
 
 }

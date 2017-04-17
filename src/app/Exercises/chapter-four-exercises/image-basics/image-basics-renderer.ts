@@ -6,9 +6,9 @@ export class ImageBasicsRenderer extends GameRenderer {
 
         this.drawGrid();
 
-        let context = this.getContext().getRenderingContext();
+        let context = this.getGame().getRenderingContext();
 
-        let env = this.getContext().getGameEnvironment();
+        let env = this.getGame().getGameEnvironment();
 
         let entities = env.getGameEntities().getCollection();
 

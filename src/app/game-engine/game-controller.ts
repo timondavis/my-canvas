@@ -1,10 +1,10 @@
-import { GameContext } from "./game-context";
+import { Game } from "./game";
 export abstract class GameController {
 
-   public constructor( protected context : GameContext ) {}
+   public constructor( protected game : Game ) {}
 
-   public getContext() {
-      return this.context;
+   public getGame() {
+      return this.game;
    }
 
    public abstract init();

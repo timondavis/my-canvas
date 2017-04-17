@@ -1,21 +1,21 @@
 import { EventEmitter } from "@angular/core";
 import { GameController } from "../game-controller";
 import { Debugger } from "../debugger";
-import { GameContext } from "../game-context";
+import { Game } from "../game";
 export class DefaultGameController extends GameController {
 
     public buttonStateChange : EventEmitter<any>;
     private keys : DefaultControllerKeys;
 
-    public constructor( context : GameContext ) {
-       super( context );
+    public constructor( game : Game ) {
+       super( game );
 
         let self = this;
 
         this.keys = new DefaultControllerKeys();
         this.buttonStateChange = new EventEmitter<any>();
 
-        this.context.getInputObserver().keyPressed.subscribe( function( event ) {
+        this.getGame().getInputObserver().keyPressed.subscribe( function( event ) {
 
                 let key = event.key.toLowerCase();
 
@@ -33,7 +33,7 @@ export class DefaultGameController extends GameController {
             (err) => Debugger.log( err )
         );
 
-        this.context.getInputObserver().keyReleased.subscribe( function( event ) {
+        this.getGame().getInputObserver().keyReleased.subscribe( function( event ) {
 
                 let key = event.key.toLowerCase();
 

@@ -20,7 +20,7 @@ export class ImageBasicsEnvironment extends GameEnvironment {
         spaceship.setWidth( 50 );
         spaceship.setHeight( 50 );*/
 
-        let barry = new CharacterGameEntity( this.getContext() );
+        let barry = new CharacterGameEntity( this.getGame() );
         barry.init();
         this.getGameEntities().setGameEntity( 'barry', barry );
 
@@ -28,7 +28,7 @@ export class ImageBasicsEnvironment extends GameEnvironment {
         barry.setWidth( 50 );
         barry.setHeight( 100 );
 
-        this.controller = new DefaultGameController( this.getContext() );
+        this.controller = new DefaultGameController( this.getGame() );
 
     }
 

@@ -2,12 +2,13 @@ import { Game } from "../../../game-engine/game";
 import { ImageBasicsRenderer } from "./image-basics-renderer";
 import { ImageBasicsEnvironment } from "./image-basics-environment";
 export class ImageBasicsGame extends Game {
+
     loadGame() {
 
-        this.getContext().setGameRenderer( new ImageBasicsRenderer( this.context ) );
-        this.getContext().setGameEnvironment( new ImageBasicsEnvironment( this.context ) );
+        this.setGameRenderer( new ImageBasicsRenderer( this ) );
+        this.setGameEnvironment( new ImageBasicsEnvironment( this ) );
 
-        this.getContext().getGameEnvironment().init();
+        this.getGameEnvironment().init();
     }
 
     run() {
@@ -17,8 +18,8 @@ export class ImageBasicsGame extends Game {
         // The LOOP!
         setInterval( function(){
 
-            SELF.getContext().getGameEnvironment().update();
-            SELF.getContext().getGameRenderer().draw();
+            SELF.getGameEnvironment().update();
+            SELF.getGameRenderer().draw();
         }, 200);
     }
 }

@@ -1,5 +1,4 @@
-import { GameContext } from "./game-context";
-import { Debugger } from "./debugger";
+import { Game } from "./game";
 
 export abstract class GameRenderer {
 
@@ -8,13 +7,13 @@ export abstract class GameRenderer {
     private gridSize            : number = 50;
     private gridFontSize        : number = 10;
 
-    public constructor( protected context : GameContext ) {}
+    public constructor( protected game : Game ) {}
 
     public abstract draw();
 
-    protected getContext() {
+    protected getGame() {
 
-        return this.context;
+        return this.game;
     }
 
     public setGridSize( size : number ) {
@@ -29,9 +28,9 @@ export abstract class GameRenderer {
 
     public clear()  {
 
-        let context = this.context.getRenderingContext();
-        let canvasWidth  = parseFloat( this.context.getCanvasElement().getAttribute( 'width' ) );
-        let canvasHeight = parseFloat( this.context.getCanvasElement().getAttribute( 'height' ) );
+        let context = this.getGame().getRenderingContext();
+        let canvasWidth  = parseFloat( this.getGame().getCanvasElement().getAttribute( 'width' ) );
+        let canvasHeight = parseFloat( this.getGame().getCanvasElement().getAttribute( 'height' ) );
 
         context.clearRect( 0, 0, canvasWidth, canvasHeight );
     }
@@ -51,10 +50,10 @@ export abstract class GameRenderer {
         let xProgress = 0;
         let yProgress = 0;
 
-        let gridWidth  = parseFloat ( this.context.getCanvasElement().getAttribute( 'width' ) );
-        let gridHeight = parseFloat ( this.context.getCanvasElement().getAttribute( 'height' ) );
+        let gridWidth  = parseFloat ( this.getGame().getCanvasElement().getAttribute( 'width' ) );
+        let gridHeight = parseFloat ( this.getGame().getCanvasElement().getAttribute( 'height' ) );
 
-        let context = this.context.getRenderingContext();
+        let context = this.getGame().getRenderingContext();
 
         // Alpha always 1
         context.globalAlpha = 1;
