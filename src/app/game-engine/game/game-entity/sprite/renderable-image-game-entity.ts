@@ -74,6 +74,9 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
         this.setCurrentCellID( currentCell );
     }
 
+    /**
+     * Move to the previous cell in the current sprite state, or go back to the end
+     */
     public reverseCell() {
 
         let currentCell = this.getCurrentCellID();
@@ -284,10 +287,6 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
         return Math.floor( cellID / cellsHigh );
     }
 
-
-
-
-
     /**
      * Get the size of a single cell unit in pixels
      * @param spriteSheetName
@@ -316,10 +315,16 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
      * @param name string  The name of the asset to retrieve
      *
      * @return Image Asset or null(?)
+     *
+     * @throws exception
      */
     protected static getSpriteSheetAsset( name : string ) : any {
 
-        return this.spriteSheetLibrary.get( name );
+        let asset = this.spriteSheetLibrary.get( name );
+
+        if ( isNull( asset ) ) { throw ( "Sprite sheet key requested has no value:  " + name ); }
+
+        return asset;
     }
 
     /**
@@ -339,10 +344,15 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
      * @param name  The name of the spriteSheet you need the data about
      *
      * @returns {Point}  x = cells wide, y = cells high
+     *
+     * @throws exception
      */
     protected static getSpriteSheetGridDimensions( name : string ) : Point {
 
         let sizing = this.spriteSheetGridDimensions.get( name );
+
+        if ( isNull( sizing ) ) { throw ( "Sprite sheet dimensiosn key requested has no value: " + name ); }
+
         return ( sizing ) ? sizing : new Point( 1, 1 );
     }
 

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, NgModule } from '@angular/core';
-import { Debugger } from "../../../../game-engine/debugger";
 import { CanvasFormsObserverService } from "../../canvas-forms-observer.service";
 import { ColorPickerModule } from "angular2-color-picker";
 
@@ -36,5 +35,4 @@ export class TextArrangerFormComponent {
     if ( 'fillType' == event.target.id ) { this.colorModeFill = event.target.value; }
     if ( 'strokeType' == event.target.id ) { this.colorModeStroke = event.target.value; }
   }
-
 }
