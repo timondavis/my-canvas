@@ -68,7 +68,7 @@ export class TextArrangerEnvironment extends GameEnvironment {
         this.shadowBlur = 1;
         this.shadowColor = "#000000";
 
-        this.message = "Hello pretty World";
+        this.message = "Hello Everybody";
 
         this.linearGradientLeftColorFill = '#f00';
         this.linearGradientCenterColorFill = '#00f';
