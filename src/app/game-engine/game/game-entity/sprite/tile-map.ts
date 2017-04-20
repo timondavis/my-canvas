@@ -69,6 +69,7 @@ export class TileMap extends RenderableImageGameEntity {
         context.setTransform( 1, 0, 0, 1, 0, 0 );
         context.translate( this.position.x, this.position.y );
 
+        // Paint each cell on the map
         columns.forEach( function( row : number[], columnID ) {
 
             row.forEach( function( cellID : number, rowID ) {

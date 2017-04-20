@@ -1,5 +1,4 @@
 import { EventEmitter } from '@angular/core';
-import { Debugger } from "../../game-engine/debugger";
 
 let thisWindow = window;
 
