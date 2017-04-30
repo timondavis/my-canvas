@@ -30,10 +30,14 @@ export class TanksEnvironment extends GameEnvironment {
 
     update() {
 
+
+
         if ( this.mapLoader.isMapLoaded() && ! this.map ) {
 
             this.map = this.mapLoader.getMap();
         }
+
+        if ( ! this.map ) { return; }
 
         let tank = <TileFriendlyGameEntity> this.getGameEntities().getGameEntity( 'tank1' );
         let moving = false;
