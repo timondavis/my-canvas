@@ -278,9 +278,9 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
      * @returns {number}
      */
     public static convertCellIDToRow( spriteSheetName : string, cellID : number ) {
-        let cellsHigh = this.getSpriteSheetGridDimensions( spriteSheetName ).y;
+        let cellsWide = this.getSpriteSheetGridDimensions( spriteSheetName ).x;
 
-        return Math.floor( cellID / cellsHigh );
+        return Math.floor( cellID / cellsWide );
     }
 
     /**

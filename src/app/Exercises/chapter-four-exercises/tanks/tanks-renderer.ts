@@ -7,10 +7,5 @@ export class TanksRenderer extends GameRenderer {
         let context = this.getGame().getRenderingContext();
 
         environment.map.render( context );
-
-
-
-
-        this.drawGrid();
     }
 }

@@ -9,7 +9,7 @@ export class TanksEnvironment extends GameEnvironment {
     init() {
 
         this.mapLoader = new TileMapLoader( this.getGame() );
-        this.mapLoader.loadFromUrl( '/assets/tilemap/tanks-l1.tmx' );
+        this.mapLoader.loadMap( '/assets/tilemap/tanks-l1.tmx', 8, 4 );
 
     }
 

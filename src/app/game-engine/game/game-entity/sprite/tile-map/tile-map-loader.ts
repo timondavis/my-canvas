@@ -16,9 +16,9 @@ export class TileMapLoader {
     public constructor( private game : Game ) {
     }
 
-    public loadFromUrl( url : string ) {
+    public loadMap( url : string, spriteSheetCellsWide : number , spriteSheetCellsHigh : number ) : void {
 
-        this.parseFile( url );
+        this.parseFile( url, spriteSheetCellsWide, spriteSheetCellsHigh );
     }
 
     public getMap() {
@@ -34,7 +34,7 @@ export class TileMapLoader {
         return this.loaded;
     }
 
-    private parseFile( url : string ) {
+    private parseFile( url : string, spriteSheetCellsWide : number , spriteSheetCellsHigh : number ) : void {
 
         let SELF = this;
 
@@ -44,15 +44,13 @@ export class TileMapLoader {
 
             xml2js.parseString( response.text(), function ( err, result ) {
 
-                console.log( 'Map File: ' );
-                console.log( result );
 
                 SELF.mapData = result;
 
                 let spriteSheetName = result[ 'map' ][ 'tileset' ][ '0' ][ 'image' ][ '0' ][ '$' ][ 'source' ];
                 let spriteSheetImage = SpriteState.loadSpriteSheetImage( '/assets/spritesheet/' + spriteSheetName );
                 GameTile.addSpriteSheet( spriteSheetName, spriteSheetImage,
-                    result[ 'map' ][ '$' ].width, result[ 'map' ][ '$' ].height );
+                    spriteSheetCellsWide, spriteSheetCellsHigh );
 
                 let csv = require( 'csv-string' );
 
@@ -100,13 +98,11 @@ export class TileMapLoader {
 
                 let frameIndex = mapMetaData['$'].width * row + column;
 
-                console.log( 'row: ' + row + ' | column: ' + column );
-
                 let gameTile = new GameTile();
                 let gameTileState = new SpriteState(
                     spriteSheetName,
-                    frames[ frameIndex ],
-                    frames[ frameIndex ]
+                    frames[ frameIndex ] - 1,
+                    frames[ frameIndex ] - 1
                 );
 
                 gameTile.getSpriteStates().setSpriteState( 'default', gameTileState );

@@ -63,6 +63,8 @@ export class TileMap extends RenderableImageGameEntity {
 
     public render( context : CanvasRenderingContext2D ) {
 
+        let SELF = this;
+
         let columns = this.tileMap;
 
         context.save();
@@ -70,12 +72,12 @@ export class TileMap extends RenderableImageGameEntity {
         context.translate( this.position.x, this.position.y );
 
         // Paint each cell on the map
-        columns.forEach( function( row : GameTile[], columnID ) {
+        columns.forEach( function( row : GameTile[], rowID ) {
 
-            row.forEach( function( tile : GameTile, rowID ) {
+            row.forEach( function( tile : GameTile, columnID ) {
 
-                tile.setXPosition( this.tileWidth * columnID + this.tileWidth );
-                tile.setYPosition( this.tileHeight * columnID + this.tileHeight );
+                tile.setXPosition( SELF.tileWidth * columnID );
+                tile.setYPosition( SELF.tileHeight * rowID );
 
                 tile.renderFromSpriteCell( context );
             });
