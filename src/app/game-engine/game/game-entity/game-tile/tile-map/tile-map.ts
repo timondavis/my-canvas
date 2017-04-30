@@ -1,6 +1,5 @@
-import { RenderableImageGameEntity } from "../renderable-image-game-entity";
-import { isNull } from "util";
-import { GameTile } from "../game-tile/game-tile";
+import { RenderableImageGameEntity } from "../../sprite/renderable-image-game-entity";
+import { GameTile } from "../game-tile";
 /**
  * A "map", typically used as a background, which is composed of cells from a spritesheet
  */

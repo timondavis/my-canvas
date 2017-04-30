@@ -17,7 +17,7 @@ export class CanvasWindowComponent implements OnInit  {
 
   public static buildGame() : Game {
 
-    return new ImageBasicsGame( new GameInputObserver() );
+    return new TanksGame( new GameInputObserver() );
   }
 
   ngOnInit() {
