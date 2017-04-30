@@ -6,6 +6,15 @@ export class TanksRenderer extends GameRenderer {
         let environment = <TanksEnvironment> this.getGame().getGameEnvironment();
         let context = this.getGame().getRenderingContext();
 
+        this.clear();
+
+        this.drawGrid();
+
         environment.map.render( context );
+
+        environment.getGameEntities().forEach( function( entity )  {
+
+            entity.renderOntoTileMap( context, environment.map );
+        });
     }
 }

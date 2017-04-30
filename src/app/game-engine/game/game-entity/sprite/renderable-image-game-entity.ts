@@ -3,6 +3,7 @@ import { RenderableGameEntity } from "../renderable-game-entity";
 import { SpriteStateCollection } from "./collection/sprite-state-collection";
 import { SpriteState } from "./sprite-state";
 import { Point } from "../../../library/graph/point";
+import { TileMap } from "../game-tile/tile-map/tile-map";
 
 export abstract class RenderableImageGameEntity extends RenderableGameEntity {
 
@@ -95,6 +96,8 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
         return this.spriteStates;
     }
 
+
+
     /**
      * Default Render Method
      *
@@ -148,6 +151,8 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
      * @param spriteStateName : string  The name of the sprite state to assign to this entity
      */
     public setCurrentSpriteState( spriteStateName : string ) : void {
+
+        if ( spriteStateName == this.getCurrentSpriteStateName() ) { return; }
 
         // Set the current sprite state
         this.currentSpriteState = this.spriteStates.getSpriteState( spriteStateName );

@@ -1,7 +1,10 @@
 import { RenderableImageGameEntity } from "../../sprite/renderable-image-game-entity";
 import { GameTile } from "../game-tile";
+import { Point } from "../../../../library/graph/point";
 /**
  * A "map", typically used as a background, which is composed of cells from a spritesheet
+ *
+ * The position indicates the root of the map, ie its position of the top-left pixel of it.
  */
 export class TileMap extends RenderableImageGameEntity {
 
@@ -47,6 +50,12 @@ export class TileMap extends RenderableImageGameEntity {
         this.setTileDimensions( tileWidth, tileHeight );
     }
 
+    /**
+     * Set the width and height of each tile on the map
+     *
+     * @param width
+     * @param height
+     */
     public setTileDimensions( width : number, height : number ) {
 
         this.tileMap.forEach( function( row : GameTile[] , columnID ) {
@@ -60,6 +69,11 @@ export class TileMap extends RenderableImageGameEntity {
 
     }
 
+    /**
+     * Render the tile map
+     *
+     * @param context
+     */
     public render( context : CanvasRenderingContext2D ) {
 
         let SELF = this;
