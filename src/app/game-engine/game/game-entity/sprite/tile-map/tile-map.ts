@@ -1,14 +1,10 @@
-import { RenderableImageGameEntity } from "./renderable-image-game-entity";
+import { RenderableImageGameEntity } from "../renderable-image-game-entity";
 import { isNull } from "util";
+import { GameTile } from "../game-tile/game-tile";
 /**
  * A "map", typically used as a background, which is composed of cells from a spritesheet
  */
 export class TileMap extends RenderableImageGameEntity {
-
-    /**
-     * @var spriteSheetName : string  The name of the spritesheet
-     */
-    private spriteSheetName : string;
 
     /**
      * @var tileMap
@@ -16,7 +12,7 @@ export class TileMap extends RenderableImageGameEntity {
      * The "map" (2 dimensional array)  of tiles.  Each element has a cell ID (+1) in it, which is used to recall which
      * image segment to display at the given row/column.  1st element is row, 2nd element is column.
      */
-    private tileMap : number[][];
+    private tileMap : GameTile[][];
 
     /** @var tilesWide : number  The number of tiles in each row **/
     private tilesWide : number;
@@ -37,7 +33,7 @@ export class TileMap extends RenderableImageGameEntity {
      * @param tileWidth : number  The width, in pixels, of each tile
      * @param tileHeight : number  The height, in pixels, of each tile
      */
-    public constructor( tilesArray : number[][], tileWidth : number = 32, tileHeight : number = 32 ) {
+    public constructor( tilesArray : GameTile[][], tileWidth : number = 32, tileHeight : number = 32 ) {
 
         super();
 
@@ -46,45 +42,42 @@ export class TileMap extends RenderableImageGameEntity {
 
         this.tileWidth = tileWidth;
         this.tileHeight = tileHeight;
+
+        this.tileMap = tilesArray;
+
+        this.setTileDimensions( tileWidth, tileHeight );
     }
 
-    public loadSpriteSheet( name, image, cellsWide, cellsHigh ) {
+    public setTileDimensions( width : number, height : number ) {
 
-        this.spriteSheetName = name;
+        this.tileMap.forEach( function( row : GameTile[] , columnID ) {
 
-        RenderableImageGameEntity.addSpriteSheet( name, image, cellsWide, cellsHigh );
-    }
+            row.forEach( function( tile : GameTile, rowID )  {
 
-    public loadTileMap( tiles : number[][] ) {
+                tile.setWidth( width );
+                tile.setHeight( height );
+            });
+        });
 
-        this.tileMap = tiles;
     }
 
     public render( context : CanvasRenderingContext2D ) {
 
         let columns = this.tileMap;
-        let SELF = this;
 
         context.save();
         context.setTransform( 1, 0, 0, 1, 0, 0 );
         context.translate( this.position.x, this.position.y );
 
         // Paint each cell on the map
-        columns.forEach( function( row : number[], columnID ) {
+        columns.forEach( function( row : GameTile[], columnID ) {
 
-            row.forEach( function( cellID : number, rowID ) {
+            row.forEach( function( tile : GameTile, rowID ) {
 
-                let sourcePosition = RenderableImageGameEntity.getSourceImageCellTopLeft( this.spriteSheetName, cellID );
-                let sourceDimensions = RenderableImageGameEntity.getCellDimensions( this.spriteSheetName );
+                tile.setXPosition( this.tileWidth * columnID + this.tileWidth );
+                tile.setYPosition( this.tileHeight * columnID + this.tileHeight );
 
-                context.drawImage(
-                    RenderableImageGameEntity.getSpriteSheetAsset( this.spriteSheetName ),
-                    sourcePosition.x, sourcePosition.y,
-                    sourceDimensions.x, sourceDimensions.y,
-                    ( columnID - 1 ) * SELF.tileWidth, ( rowID - 1 ) * SELF.tileHeight,
-                    SELF.tileWidth, SELF.tileHeight
-                );
-
+                tile.renderFromSpriteCell( context );
             });
         });
 

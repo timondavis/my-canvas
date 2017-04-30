@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, ElementRef, Input, AfterViewInit } from '@angular/core';
 import { Game } from "../game";
+import { Http } from "@angular/http";
 
 @Component({
   selector: 'app-game-canvas',
@@ -19,6 +20,8 @@ export class GameCanvasComponent implements OnInit, AfterViewInit {
 
   @Input( 'gameContext' ) game : Game;
 
+  public constructor( private http : Http ){}
+
   ngOnInit() {
 
   }
@@ -30,6 +33,7 @@ export class GameCanvasComponent implements OnInit, AfterViewInit {
     let context2d = this.canvasRef.nativeElement.getContext( '2d' );
 
     this.game.setCanvasElement( this.canvasRef.nativeElement );
+    this.game.setHttp( this.http );
 
     if ( this.game.getRenderingContext() == null  ) {
       this.game.setRenderingContext( context2d );

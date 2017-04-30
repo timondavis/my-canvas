@@ -4,6 +4,7 @@ import { GameEnvironment } from "./game-environment/game-environment";
 import { GameRenderer } from "./game-renderer/game-renderer";
 import { ComponentCollection } from "../library/collection/component-collection";
 import { GameInputObserver } from "./game-observer/game-input-observer";
+import { Http } from "@angular/http";
 export abstract class Game {
 
     public isGameLoaded : boolean = false;
@@ -13,6 +14,7 @@ export abstract class Game {
     private gameRenderer : GameRenderer;
     private canvasElement : Element;
     private relatedComponents : ComponentCollection;
+    private http : Http;
 
     public constructor( private inputObserver : GameInputObserver ) {
 
@@ -22,6 +24,11 @@ export abstract class Game {
     public abstract loadGame();
 
     public abstract run();
+
+    public getHttp() : Http {
+
+        return this.http;
+    }
 
     public getInputObserver() {
         return this.inputObserver;
@@ -48,6 +55,11 @@ export abstract class Game {
     public getCanvasElement() {
 
         return this.canvasElement;
+    }
+
+    public setHttp( http : Http ) {
+
+        this.http = http;
     }
 
     public setGameEnvironment( gameEnvironment : GameEnvironment ) {

@@ -72,4 +72,12 @@ export class SpriteState {
         return this.rangeMax;
     }
 
+    public static loadSpriteSheetImage( path : string ) : any {
+
+        let image = new Image();
+        image.src = path;
+
+        return image;
+    }
+
 }

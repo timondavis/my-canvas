@@ -1,3 +1,12 @@
+#Requirements
+
+Run `npm install --save xml2js`  
+Run `npm install --save csv`
+Run `npm install --save csv-string`
+
+
+
+
 # TextbookStuff
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.

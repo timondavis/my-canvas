@@ -109,10 +109,6 @@ export abstract class RenderableImageGameEntity extends RenderableGameEntity {
 
         context.rotate( this.rotation * Math.PI / 180 );
 
-        context.fillStyle = '#000';
-        context.strokeStyle = '#000';
-        context.fillRect( -2.5, -2.5, 5, 5 );
-
         this.renderFromSpriteCell( context );
 
         context.restore();
