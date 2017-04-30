@@ -1,8 +1,7 @@
 import { Game } from "../../../game";
-import { environment } from "../../../../../../environments/environment";
 import { TileMap } from "./tile-map";
-import { GameTile } from "../game-tile/game-tile";
-import { SpriteState } from "../sprite-state";
+import { SpriteState } from "../../sprite/sprite-state";
+import { GameTile } from "../game-tile";
 /**
  * Loads tile maps from the Tiled program
  */
